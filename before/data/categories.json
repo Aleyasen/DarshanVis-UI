@@ -1,0 +1,55 @@
+[
+    {
+        "id": 2,
+        "name": "Analyze Application I/O Behavior",
+        "charts": [
+             {
+                "id": 17,
+                "title": "Overview of I/O characteristics"
+            },
+            {
+                "id": 12,
+                "title": "Time Breakdown"
+            }
+           
+        ]
+    },
+    {   "id": 1,
+        "name": "Analyze Platform I/O Workload",
+        "charts": [
+            {
+                "id": 8,
+                "title": "I/O Throughput of All Apps"
+            },
+            {
+                "id": 18,
+                "title": "Cumulative Usage of I/O Time of Apps"
+            },
+            {
+                "id": 999,
+                "title": "Top Apps",
+                "subcats": [
+                    {
+                        "id": 9,
+                        "title": "with Highest I/O Time"
+                    },
+                    {
+                        "id": 4,
+                        "title": "with Highest Run Time"
+                    },
+                    {
+                        "id": 10,
+                        "title": "with Highest Amount of Data Accessed"
+                    }
+                ]
+            },
+            {
+                "id": 15,
+                "title": "Application's Data Size Distribution"
+            }
+        ]
+    }
+
+
+
+]
