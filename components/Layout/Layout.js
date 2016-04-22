@@ -7,13 +7,11 @@
 import React, { PropTypes } from 'react';
 import './Layout.scss';
 import Navigation from '../Navigation';
-import MainContainer from '../MainContainer';
 
 function Layout({ children }) {
   return (
-    <div className="Layout">
+    <div>
       <Navigation />
-      <MainContainer />
       {children}
     </div>
   );

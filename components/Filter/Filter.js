@@ -4,19 +4,86 @@
  * Copyright (c) Konstantin Tarkus (@koistya) | MIT license
  */
 
-import React, { PropTypes } from 'react';
+import React, {PropTypes} from 'react';
 
-function Filter({ children }) {
+function Filter({children}) {
+  var numapp_placeholder = "Apps#";
+  var user_placeholder = "User";
+  var app_placeholder = "Application"
+
+
   return (
     <div>
-      <Navigation />
-      {children}
+
+      <div className="row">
+        <div className="form-group col-md-4">
+          <div className="input-group">
+                <span className="input-group-addon">
+                    <i className="glyphicon glyphicon-user" data-toggle="tooltip" data-placement="left"
+                       title="My Tooltip text"></i>
+                </span>
+            <input type="text" name="numapp" className="form-control" id="numapp-typeahead" data-provide="typeahead"
+                   placeholder={numapp_placeholder} autocomplete="off"/>
+          </div>
+        </div>
+
+        <div className="form-group col-md-2">
+          <div className="input-group">
+                <span className="input-group-addon">
+                    <i className="glyphicon glyphicon-user" data-toggle="tooltip" data-placement="left"
+                       title="My Tooltip text"></i>
+                </span>
+            <input type="text" name="user" className="form-control" id="user-typeahead" data-provide="typeahead"
+                   placeholder={user_placeholder} autocomplete="off"/>
+          </div>
+        </div>
+
+        <div className="form-group col-md-3">
+          <div className="input-group">
+                <span className="input-group-addon">
+                    <i className="glyphicon glyphicon-font" data-toggle="tooltip" data-placement="left"
+                       title="My Tooltip text"></i>
+                </span>
+            <input type="text" name="application" className="form-control" id="application-typeahead"
+                   data-provide="typeahead" placeholder={app_placeholder} autocomplete="off"/>
+
+          </div>
+        </div>
+
+        <div className="form-group col-md-3">
+          <div id="reportrange" className="form-control"
+               style={{"background": "#fff", "cursor": "pointer", "padding": "0px 5px", "border": "1px solid #ccc"}}>
+            <i className="glyphicon glyphicon-calendar fa fa-calendar"></i>
+            <span></span> <b className="caret"></b>
+          </div>
+        </div>
+
+        <div className="col-md-1 form-group">
+          <button type="submit" className="btn btn-inverse tiny-button">Update</button>
+        </div>
+
+        <div className="col-md-1 form-group">
+          <button type="button" id="sort_button_top" className="btn tiny-button" data-toggle="modal"
+                  href="#sorting_modal">
+            <i className="glyphicon glyphicon-sort-by-alphabet"></i>
+            Sort
+          </button>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-md-2 form-group">
+          <button style={{"fontSize": "150%"}} type="button" id="toggle-percentage" className="btn tiny-button">
+            %
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
 
 Filter.propTypes = {
-  children: PropTypes.element.isRequired,
+  // children: PropTypes.element.isRequired,
 };
 
 export default Filter;

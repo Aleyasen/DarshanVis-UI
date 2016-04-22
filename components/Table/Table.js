@@ -9,14 +9,13 @@ import React, {PropTypes} from 'react';
 function Table({children}) {
   return (
     <div>
-      <Navigation />
-      {children}
+      This is Table
     </div>
   );
 }
 
 Table.propTypes = {
-  children: PropTypes.element.isRequired,
+  // children: PropTypes.element.isRequired,
 };
 
 export default Table;

@@ -5,16 +5,17 @@
  */
 
 import React, {PropTypes} from 'react';
+import Filter from '../Filter';
+import Chart from '../Charts/SimpleChart';
+import Table from '../Table';
 
 function ChartPage({params}) {
   return (
     <div>
-      {
-        /* <Filter data="params"/>
-         <Chart data="params" />
-         <Table data="params" />
-         */
-      }
+      <Filter data="params"/>
+      <div id="chart-container"/>
+      <Table data="params"/>
+
     </div>
   );
 }

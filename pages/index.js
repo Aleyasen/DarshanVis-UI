@@ -5,15 +5,13 @@
  */
 
 import React, { Component } from 'react';
+import MainContainer from '../components/MainContainer'
 
 export default class extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Home Page</h1>
-        <p>Coming soon.</p>
-      </div>
+    <MainContainer />
     );
   }
 

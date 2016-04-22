@@ -8,12 +8,13 @@ import React, {PropTypes} from 'react';
 
 
 function Menu({params}) {
-  var rows = [];
+  var rowsgroup = [];
   // var items = categories.hello;
   var items = cats;
   items.forEach(function (item) {
     item.color = "white";
-    rows.push(<MenuRow item={item}/>);
+    console.log(item);
+    rowsgroup.push(<MenuRowGroup item={item}/>);
   });
   return (
     <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -36,7 +37,7 @@ function Menu({params}) {
           <div className="panel-body">
             <div>
               <div className="nav filters" style={{"marginTop":"10px", "marginBottom": "10px"}}>
-                {rows}
+                {rowsgroup}
               </div>
             </div>
           </div>
@@ -50,12 +51,32 @@ Menu.propTypes = {
   // children: PropTypes.element.isRequired,
 };
 
+
+var MenuRowGroup = React.createClass({
+  render: function () {
+    var rows = [];
+    // var items = categories.hello;
+    var charts = this.props.item.charts;
+
+    charts.forEach(function (item) {
+      item.color = "white";
+      rows.push(<MenuRow item={item}/>);
+    });
+    return (
+
+      <li style={{"backgroundColor":"#ccc"}}>
+        <a href="#">{this.props.item.name}</a>
+        {rows}
+      </li>
+    );
+  }
+});
+
 var MenuRow = React.createClass({
   render: function () {
     return (
       <li style={{"backgroundColor":"white"}}>
-        {this.props.item.id}
-        <a href={"index?c=" + this.props.item.id}>{this.props.item.name}</a>
+        <a href={"index?c=" + this.props.item.id}>{this.props.item.title}</a>
       </li>
     );
   }
