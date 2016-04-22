@@ -5,12 +5,12 @@
  */
 
 import React, {PropTypes} from 'react';
+var DateTimeField = require('react-bootstrap-datetimepicker');
 
 function Filter({children}) {
   var numapp_placeholder = "Apps#";
   var user_placeholder = "User";
   var app_placeholder = "Application"
-
 
   return (
     <div>
@@ -51,13 +51,11 @@ function Filter({children}) {
         </div>
 
         <div className="form-group col-md-3">
-          <div id="reportrange" className="form-control"
-               style={{"background": "#fff", "cursor": "pointer", "padding": "0px 5px", "border": "1px solid #ccc"}}>
-            <i className="glyphicon glyphicon-calendar fa fa-calendar"></i>
-            <span></span> <b className="caret"></b>
-          </div>
+          <DateTimeField />
         </div>
-
+        <div className="form-group col-md-3">
+          <DateTimeField />
+        </div>
         <div className="col-md-1 form-group">
           <button type="submit" className="btn btn-inverse tiny-button">Update</button>
         </div>
