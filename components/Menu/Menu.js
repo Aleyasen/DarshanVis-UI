@@ -34,7 +34,7 @@ function Menu({params}) {
         </div>
       </div>
     </div>
-  );
+  );  
 }
 
 Menu.propTypes = {
