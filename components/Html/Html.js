@@ -18,6 +18,10 @@ function Html({title, description, body, debug}) {
       <meta name="description" content={description || config.description}/>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+      <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto"/>
       <script src={'/app.js?' + new Date().getTime()}/>
     </head>

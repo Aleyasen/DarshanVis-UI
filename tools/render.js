@@ -5,7 +5,7 @@
  */
 
 import glob from 'glob';
-import { join, dirname } from 'path';
+import {join, dirname} from 'path';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
 import Html from '../components/Html';
@@ -16,7 +16,7 @@ const DEBUG = !process.argv.includes('release');
 
 function getPages() {
   return new Promise((resolve, reject) => {
-    glob('**/*.js', { cwd: join(__dirname, '../pages') }, (err, files) => {
+    glob('**/*.js', {cwd: join(__dirname, '../pages')}, (err, files) => {
       if (err) {
         reject(err);
       } else {
@@ -27,7 +27,7 @@ function getPages() {
           } else if (path.endsWith('/index')) {
             path = path.substr(0, path.lastIndexOf('/index'));
           }
-          return { path, file };
+          return {path, file};
         });
         resolve(result);
       }
@@ -47,7 +47,7 @@ async function renderPage(page, component) {
 
 export default task(async function render() {
   const pages = await getPages();
-  const { route } = require('../build/app.node');
+  const {route} = require('../build/app.node');
   for (const page of pages) {
     await route(page.path, renderPage.bind(undefined, page));
   }

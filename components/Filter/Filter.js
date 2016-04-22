@@ -5,21 +5,18 @@
  */
 
 import React, { PropTypes } from 'react';
-import './Layout.scss';
-import Navigation from '../Navigation';
 
-function Layout({ children }) {
+function Filter({ children }) {
   return (
-    <div className="Layout">
+    <div>
       <Navigation />
-      <MainPage />
       {children}
     </div>
   );
 }
 
-Layout.propTypes = {
+Filter.propTypes = {
   children: PropTypes.element.isRequired,
 };
 
-export default Layout;
+export default Filter;

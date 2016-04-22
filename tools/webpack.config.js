@@ -83,7 +83,7 @@ const config = {
   },
   postcss: function plugins(bundler) {
     return [
-      require('postcss-import')({ addDependencyTo: bundler }),
+      require('postcss-import')({addDependencyTo: bundler}),
       require('precss')(),
       require('autoprefixer')({
         browsers: AUTOPREFIXER_BROWSERS,
@@ -169,7 +169,7 @@ const pagesConfig = merge({}, config, {
   },
   externals: /^[a-z][a-z\.\-\/0-9]*$/i,
   plugins: config.plugins.concat([
-    new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
+    new webpack.optimize.LimitChunkCountPlugin({maxChunks: 1}),
   ]),
   module: {
     loaders: [

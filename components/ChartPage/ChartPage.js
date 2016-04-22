@@ -5,21 +5,19 @@
  */
 
 import React, { PropTypes } from 'react';
-import './Layout.scss';
-import Navigation from '../Navigation';
 
-function Layout({ children }) {
+function ChartPage({ params }) {
   return (
-    <div className="Layout">
-      <Navigation />
-      <MainPage />
-      {children}
+    <div>
+      <Filter data="params"  />
+      <Chart data="params" />
+      <Table data="params" />
     </div>
   );
 }
 
-Layout.propTypes = {
+ChartPage.propTypes = {
   children: PropTypes.element.isRequired,
 };
 
-export default Layout;
+export default ChartPage;

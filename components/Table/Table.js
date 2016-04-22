@@ -4,22 +4,19 @@
  * Copyright (c) Konstantin Tarkus (@koistya) | MIT license
  */
 
-import React, { PropTypes } from 'react';
-import './Layout.scss';
-import Navigation from '../Navigation';
+import React, {PropTypes} from 'react';
 
-function Layout({ children }) {
+function Table({children}) {
   return (
-    <div className="Layout">
+    <div>
       <Navigation />
-      <MainPage />
       {children}
     </div>
   );
 }
 
-Layout.propTypes = {
+Table.propTypes = {
   children: PropTypes.element.isRequired,
 };
 
-export default Layout;
+export default Table;
