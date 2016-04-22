@@ -38,7 +38,7 @@ function Filter({children}) {
           </div>
         </div>
 
-        <div className="form-group col-md-3">
+        <div className="form-group col-md-3">  
           <div className="input-group">
                 <span className="input-group-addon">
                     <i className="glyphicon glyphicon-font" data-toggle="tooltip" data-placement="left"
