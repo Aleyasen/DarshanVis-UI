@@ -65,5 +65,7 @@ var Chart = require('../Chart'),
 // export default Chart;
 
 // Create and render element
-var element = React.createElement(Chart, { container: 'chart', options: options });
-ReactDOM.render(element, document.getElementById('chart-container'));
+var element = React.createElement(Chart, {container: 'chart', options: options});
+if (typeof window !== 'undefined') {
+  ReactDOM.render(element, document.getElementById('chart-container'));
+}

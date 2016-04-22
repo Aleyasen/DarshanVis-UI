@@ -13,10 +13,10 @@ function MainContainer({params}) {
   return (
     <div className="container-fluid" style={{"paddingTop":"80px"}}>
       <div className="row">
-        <div className="col-sm-2 col-md-2 sidebar">
+        <div className="col-sm-3 col-md-3">
           <Menu/>
         </div>
-        <div className="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main">
+        <div className="col-sm-9 col-md-9">
           <ChartPage/>
         </div>
       </div>
