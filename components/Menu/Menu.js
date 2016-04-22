@@ -6,48 +6,113 @@
 
 import React, {PropTypes} from 'react';
 
+
 function Menu({params}) {
+  var rows = [];
+  // var items = categories.hello;
+  var items = cats;
+  items.forEach(function (item) {
+    item.color = "white";
+    rows.push(<MenuRow item={item}/>);
+  });
   return (
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
       <center>
-        <div class="black-link">
-          <div style="font-size:110%; font-weight: bold;"></div>
+        <div className="black-link">
+          <div style={{"fontSize":"110%", "fontWeight": "bold"}}></div>
         </div>
       </center>
-      <div id="myfilter" style=" padding-bottom: 3px;"></div>
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingOne">
-          <h4 class="panel-title filter-header">
-            <a class="collapsed btn-block non-loc-colap" data-toggle="collapse" data-parent="#accordion"
+      <div id="myfilter" style={{"paddingBottom": "3px"}}></div>
+      <div className="panel panel-default">
+        <div className="panel-heading" role="tab" id="headingOne">
+          <h4 className="panel-title filter-header">
+            <a className="collapsed btn-block non-loc-colap" data-toggle="collapse" data-parent="#accordion"
                href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-              <strong>{this.props.catname}</strong>
+              <strong></strong>
             </a>
           </h4>
         </div>
-        <div id="collapseOne" class="panel-collapse" role="tabpanel" aria-labelledby="headingOne">
-          <div class="panel-body">
+        <div id="collapseOne" className="panel-collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div className="panel-body">
             <div>
-              <div class="nav filters" style="margin-top:10px; margin-bottom: 10px;">
+              <div className="nav filters" style={{"marginTop":"10px", "marginBottom": "10px"}}>
+                {rows}
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  );  
+  );
 }
 
 Menu.propTypes = {
-  children: PropTypes.element.isRequired,
+  // children: PropTypes.element.isRequired,
 };
 
 var MenuRow = React.createClass({
   render: function () {
     return (
-      <li style="background-color:{this.props.color}">
-        <a href="index?c={this.props.id}">{this.props.label}</a>
+      <li style={{"backgroundColor":"white"}}>
+        {this.props.item.id}
+        <a href={"index?c=" + this.props.item.id}>{this.props.item.name}</a>
       </li>
     );
   }
 });
+
+var cats = [
+  {
+    "id": 2,
+    "name": "Analyze Application I/O Behavior",
+    "charts": [
+      {
+        "id": 17,
+        "title": "Overview of I/O characteristics"
+      },
+      {
+        "id": 12,
+        "title": "Time Breakdown"
+      }
+
+    ]
+  },
+  {
+    "id": 1,
+    "name": "Analyze Platform I/O Workload",
+    "charts": [
+      {
+        "id": 8,
+        "title": "I/O Throughput of All Apps"
+      },
+      {
+        "id": 18,
+        "title": "Cumulative Usage of I/O Time of Apps"
+      },
+      {
+        "id": 999,
+        "title": "Top Apps",
+        "subcats": [
+          {
+            "id": 9,
+            "title": "with Highest I/O Time"
+          },
+          {
+            "id": 4,
+            "title": "with Highest Run Time"
+          },
+          {
+            "id": 10,
+            "title": "with Highest Amount of Data Accessed"
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "title": "Application's Data Size Distribution"
+      }
+    ]
+  }
+];
+
 export default Menu;

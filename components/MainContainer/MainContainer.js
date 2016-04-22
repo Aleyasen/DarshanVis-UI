@@ -6,9 +6,12 @@
 
 import React, {PropTypes} from 'react';
 
+import Menu from '../Menu';
+import ChartPage from '../ChartPage';
+
 function MainContainer({params}) {
   return (
-    <div className="container-fluid">
+    <div className="container-fluid" style={{"paddingTop":"80px"}}>
       <div className="row">
         <div className="col-sm-2 col-md-2 sidebar">
           <Menu/>
@@ -22,7 +25,7 @@ function MainContainer({params}) {
 }
 
 MainContainer.propTypes = {
-  children: PropTypes.element.isRequired,
+  // children: PropTypes.element.isRequired,
 };
 
 export default MainContainer;

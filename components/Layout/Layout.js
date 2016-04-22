@@ -7,19 +7,20 @@
 import React, { PropTypes } from 'react';
 import './Layout.scss';
 import Navigation from '../Navigation';
+import MainContainer from '../MainContainer';
 
 function Layout({ children }) {
   return (
     <div className="Layout">
       <Navigation />
-      <MainPage />
+      <MainContainer />
       {children}
     </div>
   );
 }
 
 Layout.propTypes = {
-  children: PropTypes.element.isRequired,
+  // children: PropTypes.element.isRequired,
 };
 
 export default Layout;
