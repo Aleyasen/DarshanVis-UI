@@ -64,8 +64,90 @@ var Chart = require('../Chart'),
 //
 // export default Chart;
 
+// var ChartObj = React.createClass({
+//   getInitialState: function() {
+//     return {
+//       container: 'chart',
+//       options: options
+//     };
+//   },
+
+//   componentDidMount: function() {
+//     this.serverRequest = $.post("http://localhost/index.php/jobs/filter", {url: "test", chart: "8"}, function(data){
+//       this.setState({
+//         container: 'chart',
+//         options: data.chart
+//       });
+//     }.bind(this), "json");
+//   },
+
+//   componentWillUnmount: function() {
+//     this.serverRequest.abort();
+//   },
+
+//   render: function () {
+//     return React.createElement('div', {id: this.props.container});
+//   }
+
+// });
+
+// // var element = React.createElement(ChartObj, )
+
+// var UserGist = React.createClass({
+
+//   componentDidMount: function() {
+//     this.serverRequest = $.get(this.props.source, function (result) {
+//       var lastGist = result[0];
+//       this.setState({
+//         username: lastGist.owner.login,
+//         lastGistUrl: lastGist.html_url
+//       });
+//     }.bind(this));
+//   },
+
+
+//   // render: function() {
+//   //   return (
+//   //     <div>
+//   //       {this.state.username}'s last gist is
+//   //       <a href={this.state.lastGistUrl}>here</a>.
+//   //     </div>
+//   //   );
+//   // }
+// });
+
+// ReactDOM.render(
+//   <UserGist source="https://api.github.com/users/octocat/gists" />,
+//   mountNode
+// );
+
+var callback = function(data){
+  console.log(data);
+  var element = React.createElement(Chart, {container: 'chart', options: data.chart});
+  if (typeof window !== 'undefined') {
+    ReactDOM.render(element, document.getElementById('chart-container'));
+  }
+};
+
+$.ajax({
+  type: "POST",
+  url: "http://localhost/index.php/jobs/filter",
+  crossDomain: true,
+  data: {url: "test", chart: "8"},
+  success: callback,
+  dataType: JSON
+});
+
+// $.post("http://localhost/index.php/jobs/filter", crossDomain: true, {url: "test", chart: "8"}, function(data){
+//   console.log(data);
+//   var element = React.createElement(Chart, {container: 'chart', options: data.chart});
+//   if (typeof window !== 'undefined') {
+//     ReactDOM.render(element, document.getElementById('chart-container'));
+//   }
+// });
+
 // Create and render element
-var element = React.createElement(Chart, {container: 'chart', options: options});
-if (typeof window !== 'undefined') {
-  ReactDOM.render(element, document.getElementById('chart-container'));
-}
+// var element = React.createElement(Chart, {container: 'chart', options: options});
+// if (typeof window !== 'undefined') {
+//   ReactDOM.render(element, document.getElementById('chart-container'));
+// }
