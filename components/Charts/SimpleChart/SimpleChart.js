@@ -123,7 +123,7 @@ var Chart = require('../Chart'),
 //   mountNode
 // );
 
-var callback = function(data){
+var callback = function (data) {
   console.log(data);
   var element = React.createElement(Chart, {container: 'chart', options: data.chart});
   if (typeof window !== 'undefined') {
@@ -131,14 +131,16 @@ var callback = function(data){
   }
 };
 
-$.ajax({
-  type: "POST",
-  url: "http://localhost/index.php/jobs/filter",
-  crossDomain: true,
-  data: {url: "test", chart: "8"},
-  success: callback,
-  dataType: JSON
-});
+if (typeof window !== 'undefined') {
+  $.ajax({
+    type: "POST",
+    url: "http://localhost/index.php/jobs/filter",
+    crossDomain: true,
+    data: {url: "test", chart: "8"},
+    success: callback,
+    dataType: JSON
+  });
+}
 
 // $.post("http://localhost/index.php/jobs/filter", crossDomain: true, {url: "test", chart: "8"}, function(data){
 //   console.log(data);

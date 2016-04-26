@@ -65,9 +65,9 @@ var MenuRowGroup = React.createClass({
     return (
 
       <li style={{"backgroundColor":"#ccc"}}>
-        <a href="#">{this.props.item.name}</a>
-        {rows}
-      </li>
+    <a href="#">{this.props.item.name}</a>
+    {rows}
+    </li>
     );
   }
 });
