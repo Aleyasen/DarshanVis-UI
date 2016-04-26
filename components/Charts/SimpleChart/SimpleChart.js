@@ -7,6 +7,8 @@
 import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 
+var $ = require('jquery');
+
 var Chart = require('../Chart'),
   options = {
     title: {
