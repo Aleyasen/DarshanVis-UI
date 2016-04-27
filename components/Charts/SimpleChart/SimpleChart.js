@@ -130,15 +130,21 @@ var callback = function (data) {
     ReactDOM.render(element, document.getElementById('chart-container'));
   }
 };
-
+var data = {
+  url: "test",
+  chart: "8"
+}
 if (typeof window !== 'undefined') {
   $.ajax({
-    type: "POST",
-    url: "http://localhost/index.php/jobs/filter",
-    crossDomain: true,
-    data: {url: "test", chart: "8"},
+    url: "http://localhost/DarshanVis-API/index.php/jobs/filter",
+    // url: "http://localhost/index.php/jobs/filter",
+    dataType: 'json',
+    type: 'POST',
+    data: JSON.stringify(data),
     success: callback,
-    dataType: JSON
+    error: function (xhr, status, err) {
+      console.error(this.props.url, status, err.toString());
+    }
   });
 }
 
