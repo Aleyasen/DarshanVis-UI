@@ -129,7 +129,7 @@ var callback = function (data) {
   console.log("DATA");
   console.log(data);
   var opts = data.chart;
-  var chart = $('#chart-container'); //.highcharts();
+  // var chart = $('#chart-container'); //.highcharts();
   var series = data["chart"]["series"];
   var queryResult = data["queryresult"];
   var opts_series = [];
@@ -137,7 +137,7 @@ var callback = function (data) {
     var attr = series[i]["attribute"];
       var qr = queryResult[attr];
       if (qr != null) {
-          $('#chart-container').html("");
+          // $('#chart-container').html("");
           series[i]["data"] = [];
           for (var j = 0; j < qr.length; j++) {
               var num = Number(qr[j]);
@@ -145,26 +145,34 @@ var callback = function (data) {
                   series[i]["data"].push([j, num]);
               }
           }
-          console.log(series[i]);
+          // console.log(series[i]);
           opts_series.push(series[i]);
           // chart.addSeries(series[i], false);
-      } else {
-          $('#chart-container').html("<center>No result for the desired filters.</center>");
-      }
+      } 
+      // else {
+      //     $('#chart-container').html("<center>No result for the desired filters.</center>");
+      // }
   }
-  console.log(opts_series);
+  // console.log(opts_series);
 
   opts.series = opts_series;
+  opts.title = data.chart.name;
+
+  console.log(opts);
 
 
   var element = React.createElement(Chart, {container: 'chart', options: opts});
+
   if (typeof window !== 'undefined') {
     ReactDOM.render(element, document.getElementById('chart-container'));
   }
 };
+
+var chart_id = prompt("Please enter desired chart", "8");
+
 var data = {
   url: "test",
-  chart: "8"
+  chart: chart_id
 }
 if (typeof window !== 'undefined') {
   $.ajax({
