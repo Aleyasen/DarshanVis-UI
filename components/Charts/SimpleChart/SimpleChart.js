@@ -8,6 +8,7 @@ import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 
 var $ = require('jquery');
+var Highcharts = require('highcharts');
 
 var Chart = require('../Chart'),
   options = {
@@ -123,9 +124,40 @@ var Chart = require('../Chart'),
 //   mountNode
 // );
 
+
 var callback = function (data) {
+  console.log("DATA");
   console.log(data);
-  var element = React.createElement(Chart, {container: 'chart', options: data.chart});
+  var opts = data.chart;
+  var chart = $('#chart-container'); //.highcharts();
+  var series = data["chart"]["series"];
+  var queryResult = data["queryresult"];
+  var opts_series = [];
+  for (var i = 0; i < series.length; i++) {
+    var attr = series[i]["attribute"];
+      var qr = queryResult[attr];
+      if (qr != null) {
+          $('#chart-container').html("");
+          series[i]["data"] = [];
+          for (var j = 0; j < qr.length; j++) {
+              var num = Number(qr[j]);
+              if (num != 0) {
+                  series[i]["data"].push([j, num]);
+              }
+          }
+          console.log(series[i]);
+          opts_series.push(series[i]);
+          // chart.addSeries(series[i], false);
+      } else {
+          $('#chart-container').html("<center>No result for the desired filters.</center>");
+      }
+  }
+  console.log(opts_series);
+
+  opts.series = opts_series;
+
+
+  var element = React.createElement(Chart, {container: 'chart', options: opts});
   if (typeof window !== 'undefined') {
     ReactDOM.render(element, document.getElementById('chart-container'));
   }
@@ -147,6 +179,9 @@ if (typeof window !== 'undefined') {
     }
   });
 }
+
+
+
 
 // $.post("http://localhost/index.php/jobs/filter", crossDomain: true, {url: "test", chart: "8"}, function(data){
 //   console.log(data);
