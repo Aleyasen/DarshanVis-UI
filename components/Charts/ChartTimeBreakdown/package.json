@@ -1,0 +1,5 @@
+{
+  "private": true,
+  "name": "ChartTimeBreakDown",
+  "main": "./ChartTimeBreakDown.js"
+}

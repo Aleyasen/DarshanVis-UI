@@ -7,7 +7,9 @@
 import React, {PropTypes} from 'react';
 
 import Menu from '../Menu';
-import ChartPage from '../ChartPage';
+import ChartPage from '../Charts/SimpleChart';
+// import ChartPage from '../Charts/ChartTimeBreakDown';
+
 
 function MainContainer({params}) {
   return (

@@ -38,7 +38,7 @@ function Filter({children}) {
           </div>
         </div>
 
-        <div className="form-group col-md-3">  
+        <div className="form-group col-md-3">
           <div className="input-group">
                 <span className="input-group-addon">
                     <i className="glyphicon glyphicon-font" data-toggle="tooltip" data-placement="left"
@@ -57,11 +57,11 @@ function Filter({children}) {
           <DateTimeField />
         </div>
         <div className="col-md-1 form-group">
-          <button type="submit" className="btn btn-inverse tiny-button">Update</button>
+          <button onClick={updateChart} type="button" className="btn btn-inverse tiny-button">Update</button>
         </div>
 
         <div className="col-md-1 form-group">
-          <button type="button" id="sort_button_top" className="btn tiny-button" data-toggle="modal"
+          <button onClick={sortData} type="button" id="sort_button_top" className="btn tiny-button" data-toggle="modal"
                   href="#sorting_modal">
             <i className="glyphicon glyphicon-sort-by-alphabet"></i>
             Sort
@@ -71,13 +71,18 @@ function Filter({children}) {
 
       <div className="row">
         <div className="col-md-2 form-group">
-          <button style={{"fontSize": "150%"}} type="button" id="toggle-percentage" className="btn tiny-button">
+          <button onClick={togglePercent} style={{"fontSize": "150%"}} type="button" id="toggle-percentage"
+                  className="btn tiny-button">
             %
           </button>
         </div>
       </div>
     </div>
   );
+}
+
+function updateChart(e) {
+  console.log(e);
 }
 
 Filter.propTypes = {

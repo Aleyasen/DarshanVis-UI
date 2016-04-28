@@ -193,13 +193,14 @@ var callback = function (data) {
   var element = React.createElement(Chart, {container: 'chart', options: opts});
 
   if (typeof window !== 'undefined') {
-    ReactDOM.render(element, document.getElementById('chart'));
+    ReactDOM.render(element, document.getElementById('chart-container'));
   }
 };
 // if (typeof window !== 'undefined') {
-// var chart_id = prompt("Please enter desired chart", "8");
-var chart_id = 8;
+  // var chart_id = prompt("Please enter desired chart", "8");
+  var chart_id = 12;
 // }
+
 
 var data = {
   url: "test",
@@ -233,10 +234,3 @@ if (typeof window !== 'undefined') {
 // if (typeof window !== 'undefined') {
 //   ReactDOM.render(element, document.getElementById('chart-container'));
 // }
-function SimpleChart({params}) {
-  return (
-    <div id="chart"/>
-  );
-}
-
-export default SimpleChart;

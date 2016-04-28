@@ -1,5 +1,5 @@
 {
   "private": true,
   "name": "SimpleChart",
-  "main": "./SimpleChart.js"
+  "main": "./SimpleChartAll.js"
 }
