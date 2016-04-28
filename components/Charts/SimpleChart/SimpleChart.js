@@ -58,6 +58,33 @@ var Chart = require('../Chart'),
     }]
   };
 
+var default_opts = {
+  title: {
+    text: 'CHART ERROR',
+    x: -20 //center
+  },
+  // xAxis: {
+  //   categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+  //     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  // },
+  // yAxis: {
+  //   title: {
+  //     text: 'CHART ERROR'
+  //   }
+  // },
+  tooltip: {
+    valueSuffix: '°C'
+  },
+  legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'middle',
+    borderWidth: 0
+  },
+  series: [
+  ]
+};
+
 // Add additional module required to render a treemap.
 // module.exports = React.createClass({
 //   render: function () {
@@ -128,7 +155,10 @@ var Chart = require('../Chart'),
 var callback = function (data) {
   console.log("DATA");
   console.log(data);
-  var opts = data.chart;
+  console.log("OPTIONS")
+  console.log(data.chart.options);
+  var opts = data.chart["highchart-confs"];
+  // var opts = default_opts;
   // var chart = $('#chart-container'); //.highcharts();
   var series = data["chart"]["series"];
   var queryResult = data["queryresult"];
@@ -156,7 +186,7 @@ var callback = function (data) {
   // console.log(opts_series);
 
   opts.series = opts_series;
-  opts.title = data.chart.name;
+  // opts.title.text = data.chart.name;
 
   console.log(opts);
 
