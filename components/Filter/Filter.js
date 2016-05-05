@@ -61,7 +61,7 @@ function Filter({children}) {
         </div>
 
         <div className="col-md-1 form-group">
-          <button onClick={sortData} type="button" id="sort_button_top" className="btn tiny-button" data-toggle="modal"
+          <button onClick={updateChart} type="button" id="sort_button_top" className="btn tiny-button" data-toggle="modal"
                   href="#sorting_modal">
             <i className="glyphicon glyphicon-sort-by-alphabet"></i>
             Sort
@@ -71,7 +71,7 @@ function Filter({children}) {
 
       <div className="row">
         <div className="col-md-2 form-group">
-          <button onClick={togglePercent} style={{"fontSize": "150%"}} type="button" id="toggle-percentage"
+          <button onClick={updateChart} style={{"fontSize": "150%"}} type="button" id="toggle-percentage"
                   className="btn tiny-button">
             %
           </button>

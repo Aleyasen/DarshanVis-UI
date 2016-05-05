@@ -58,31 +58,33 @@ var Chart = require('../Chart'),
     }]
   };
 
-var default_opts = {
-  title: {
-    text: 'CHART ERROR',
-    x: -20 //center
-  },
-  // xAxis: {
-  //   categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-  //     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-  // },
-  // yAxis: {
-  //   title: {
-  //     text: 'CHART ERROR'
-  //   }
-  // },
-  tooltip: {
-    valueSuffix: '°C'
-  },
-  legend: {
-    layout: 'vertical',
-    align: 'right',
-    verticalAlign: 'middle',
-    borderWidth: 0
-  },
-  series: []
-};
+
+
+// var default_opts = {
+//   title: {
+//     text: 'CHART ERROR',
+//     x: -20 //center
+//   },
+//   // xAxis: {
+//   //   categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+//   //     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+//   // },
+//   // yAxis: {
+//   //   title: {
+//   //     text: 'CHART ERROR'
+//   //   }
+//   // },
+//   tooltip: {
+//     valueSuffix: '°C'
+//   },
+//   legend: {
+//     layout: 'vertical',
+//     align: 'right',
+//     verticalAlign: 'middle',
+//     borderWidth: 0
+//   },
+//   series: []
+// };
 
 // Add additional module required to render a treemap.
 // module.exports = React.createClass({
@@ -156,11 +158,13 @@ var callback = function (data) {
   console.log(data);
   console.log("OPTIONS")
   console.log(data.chart.options);
-  var opts = data.chart["highchart-confs"];
+  // var opts = data.chart["highchart-confs"];
+  var opts = default_opts;
   // var opts = default_opts;
   // var chart = $('#chart-container'); //.highcharts();
   var series = data["chart"]["series"];
-  var queryResult = data["queryresult"];
+  // var queryResult = data["queryresult"];
+  var queryResult = data;
   var opts_series = [];
   for (var i = 0; i < series.length; i++) {
     var attr = series[i]["attribute"];
@@ -198,7 +202,7 @@ var callback = function (data) {
 };
 // if (typeof window !== 'undefined') {
 // var chart_id = prompt("Please enter desired chart", "8");
-var chart_id = 8;
+var chart_id = 17;
 // }
 
 var data = {
@@ -206,17 +210,17 @@ var data = {
   chart: chart_id
 }
 if (typeof window !== 'undefined') {
-  $.ajax({
-    url: "http://localhost/DarshanVis-API/index.php/jobs/filter",
-    // url: "http://localhost/index.php/jobs/filter",
-    dataType: 'json',
-    type: 'POST',
-    data: JSON.stringify(data),
-    success: callback,
-    error: function (xhr, status, err) {
-      console.error(this.props.url, status, err.toString());
-    }
-  });
+  // $.ajax({
+  //   url: "http://localhost/DarshanVis-API/index.php/jobs/filter",
+  //   // url: "http://localhost/index.php/jobs/filter",
+  //   dataType: 'json',
+  //   type: 'POST',
+  //   data: JSON.stringify(data),
+  //   success: callback,
+  //   error: function (xhr, status, err) {
+  //     console.error(this.props.url, status, err.toString());
+  //   }
+  // });
 }
 
 
