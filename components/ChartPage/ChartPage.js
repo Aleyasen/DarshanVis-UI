@@ -14,7 +14,7 @@ function ChartPage({params}) {
     <div>
       <Filter data="params"/>
       <div id="chart-container"/>
-      <Table data="params"/>
+      // <Table data="params"/>
 
     </div>
   );

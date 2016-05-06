@@ -20,6 +20,27 @@ function MainContainer({params}) {
         </div>
         <div className="col-sm-9 col-md-9">
           <ChartPage/>
+          <div id="chart-config" hidden>
+            <select id="chart-config-sel-x">
+            </select>
+
+            <select id="chart-config-sel-y">
+            </select>
+
+            <br></br>
+
+            <select id="chart-config-sel-x-scale">
+              <option value="logarithmic">Logarithmic</option>
+              <option value="linear">Linear</option>
+            </select>
+
+            <select id="chart-config-sel-y-scale">
+              <option value="logarithmic">Logarithmic</option>
+              <option value="linear">Linear</option>
+            </select>
+
+            <button id="chart-config-button">Configure Chart</button>
+          </div>
         </div>
       </div>
     </div>

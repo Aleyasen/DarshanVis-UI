@@ -8,6 +8,61 @@ import React, {PropTypes} from 'react';
 var Chart = require('../Charts/Chart');
 import ReactDOM from 'react-dom';
 
+var sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+var num_sizes = ['', 'K', 'M', 'B', 'Tr', '', ''];
+
+function byte_formatter(c, suffix) {
+    return byte_formatter_general(c, suffix, 1);
+}
+
+
+function byte_formatter_for_bytes(c, suffix) {
+    return byte_formatter_general(c, suffix, 1);
+}
+
+
+function byte_formatter_str(c, suffix) {
+    c = parseInt(c);
+    c = +c;
+    c = c * 1000 * 1000;
+    return byte_formatter_general_1(c, suffix, 1);
+}
+
+function byte_formatter_str_for_bytes(c, suffix) {
+    c = parseInt(c);
+    c = +c;
+    return byte_formatter_general_1(c, suffix, 1);
+}
+
+
+function byte_formatter_general(c, suffix, multiplier) {
+    var bytes = c.value * multiplier;
+    if (bytes == 0) {
+        return '0 B';
+    }
+    var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1000)));
+    return Math.round(bytes / Math.pow(1000, i), 2) + ' ' + sizes[i] + suffix;
+}
+
+function byte_formatter_general_1(c, suffix, multiplier) {
+    var bytes = c * multiplier;
+    if (bytes == 0) {
+        return '0 B';
+    }
+    var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1000)));
+    return Math.round(bytes / Math.pow(1000, i), 2) + ' ' + sizes[i] + suffix;
+}
+
+function num_procs_formatter_str(c, suffix) {
+    c = parseInt(c);
+    if (c == 0) {
+        return '0';
+    }
+    var i = parseInt(Math.floor(Math.log(c) / Math.log(1000)));
+    return Math.round(c / Math.pow(1000, i), 10) + ' ' + num_sizes[i] + suffix;
+}
+
+
 // CONSTANTS
 // holds chart data
 var charts = {
@@ -336,7 +391,309 @@ var chart_series = {
             "name": "Percentage of runtime spent in I/O",
             "not-in-chart": true
         }
-    ]
+    ],
+  "17" : [
+  ]
+};
+
+var axisTitles = {
+    "nprocs" : "Number of Processes",
+    "total_bytes" : "Amount of Data Read/Written",
+    "thruput" : "I/O Throughput",
+    "start_time" : "Submission Date",
+    "uid" : "User ID"
+};
+
+var x_options = charts["12"]["xAxis"]["options"];
+var y_options = charts["12"]["yAxis"]["options"];
+var x_options_list = "";
+var y_options_list = "";
+x_options.forEach(function(item)
+{
+  x_options_list += "<option value=" + item + ">" + axisTitles[item] + "</option>";
+});
+y_options.forEach(function(item)
+{
+  y_options_list += "<option value=" + item + ">" + axisTitles[item] + "</option>";
+});
+
+function date_formatter(string) {
+    //2015-09-03 13:20:46
+    var strArr = string.split(" ");
+    var yymmdd = strArr[0]; //gives us 2015-09-03
+    var indiv = yymmdd.split("-");
+    // indiv[0] is year
+    var year = parseInt(indiv[0]);
+    // indiv[1] is month, BUT ZERO BASED so subtract one
+    var month = parseInt(indiv[1]) - 1;
+    // indiv[2] is day
+    var day = parseInt(indiv[2]);
+
+    // Date.UTC('year', 'month', 'day')
+    return parseInt(Date.UTC(year, month, day));
+}
+
+var make_chart = function (xaxis, yaxis, x_scale, y_scale, data) {
+    console.log("data");
+    console.log(data);
+    // var series_obj = all_data["queryresult"];
+    var series_obj = data;
+    var str_s1 = series_obj[xaxis];
+    var str_s2 = series_obj[yaxis];
+    var ret = "";
+    var ret_obj = [];
+
+    if (xaxis == "start_time")
+    {
+        x_scale = 'datetime';
+    }
+    if (yaxis == "start_time")
+    {
+        y_scale = 'datetime';
+    }
+
+    for (var i = 0; i < str_s1.length; i++)
+    {
+        if (str_s1[i].length != 0 && str_s2[i].length != 0)
+        {
+            if (xaxis != "start_time")
+            {
+                var x = parseInt(str_s1[i]);
+            }
+            else
+            {
+                var x = date_formatter(str_s1[i]);
+            }
+            if (yaxis != "start_time")
+            {
+                var y = parseInt(str_s2[i]);
+            }
+            else {
+                var y = date_formatter(str_s2[i]);
+            }
+
+            if (x == 0 || y == 0)
+            {
+                // console.log('found zero');
+                // console.log(x + ", " + y);
+                continue;
+            }
+
+            ret_obj.push([x, y]);
+        }
+    }
+
+    var options = {
+        chart: {
+            type: 'scatter',
+            zoomType: 'xy',
+            width: 900,
+            height: 500
+        },
+        title: {
+            text: '<?php echo $chart["title"] ?>'
+        },
+        subtitle: {
+            text: '<?php echo $chart["subtitle"] ?>'
+        },
+        legend: {
+            enabled: false
+        },
+        xAxis: {
+            title: {
+                enabled: true,
+                text: axisTitles[xaxis],
+                style: {
+                    fontSize: '20px'
+                }
+            },
+            type: x_scale,
+            labels: {
+                formatter: function () {
+                    var str = "";
+                    if (xaxis == "thruput")
+                    {
+                        str += byte_formatter_str_for_bytes(this.value, "/s");
+                    }
+                    else if (xaxis == "total_bytes")
+                    {
+                        str += byte_formatter_str_for_bytes(this.value, "");
+                    }
+                    else if (xaxis == "nprocs")
+                    {
+                        str += num_procs_formatter_str(this.value, "");
+                    }
+                    else if (xaxis == "start_time")
+                    {
+                        str += Highcharts.dateFormat('%b-%d-%y', this.value);
+                    }
+                    else {
+                        str += this.value;
+                    }
+                    return str;
+                },
+                style: {
+                    fontSize: '15px'
+                }
+            }
+        },
+        yAxis: {
+            title: {
+                text: axisTitles[yaxis],
+                style: {
+                    fontSize: '20px'
+                }
+            },
+            type: y_scale,
+            labels: {
+                formatter: function () {
+                    var str = "";
+                    if (yaxis == "thruput")
+                    {
+                        str += byte_formatter_str_for_bytes(this.value, "/s");
+                    }
+                    else if (yaxis == "total_bytes")
+                    {
+                        str += byte_formatter_str_for_bytes(this.value, "");
+                    }
+                    else if (yaxis == "nprocs")
+                    {
+                        str += num_procs_formatter_str(this.value, "");
+                    }
+                    else if (yaxis == "start_time")
+                    {
+                        str += Highcharts.dateFormat('%b-%d-%y', this.value);
+                    }
+                    else {
+                        str += this.value;
+                    }
+                    return str;
+                },
+                style: {
+                    fontSize: '15px'
+                }
+            }
+        },
+        // plotOptions: {
+        //     scatter: {
+        //         marker: {
+        //             radius: 5,
+        //             states: {
+        //                 hover: {
+        //                     enabled: true,
+        //                     lineColor: 'rgb(100,100,100)'
+        //                 }
+        //             }
+        //         },
+        //         states: {
+        //             hover: {
+        //                 marker: {
+        //                     enabled: false
+        //                 }
+        //             }
+        //         }
+        //     }
+        // },
+        exporting: {
+            buttons: {
+                contextButton: {
+                    symbol: "url(../../img/printer2.png)"
+                }
+            }
+        },
+        tooltip: {
+            formatter: function () {
+                var str = "";
+                if (xaxis == "thruput")
+                {
+                    str += "X= " + byte_formatter_str_for_bytes(this.x, "/s");
+                }
+                else if (xaxis == "total_bytes")
+                {
+                    str += "X= " + byte_formatter_str_for_bytes(this.x, "");
+                }
+                else if (xaxis == "nprocs")
+                {
+                    str += "X= " + num_procs_formatter_str(this.x, "");
+                }
+                else if (xaxis == "start_time")
+                {
+                    str += "X= " + Highcharts.dateFormat('%b-%d-%y', this.x);
+                }
+                else {
+                    str += "X= " + this.x;
+                }
+                if (yaxis == "thruput") {
+                    str += ", Y= " + byte_formatter_str_for_bytes(this.y, "/s");
+                }
+                else if (yaxis == "total_bytes")
+                {
+                    str += ", Y= " + byte_formatter_str_for_bytes(this.y, "");
+                }
+                else if (yaxis == "nprocs")
+                {
+                    str += ", Y= " + num_procs_formatter_str(this.y, "");
+                }
+                else if (yaxis == "start_time")
+                {
+                    str += ", Y=" + Highcharts.dateFormat('%b-%d-%y', this.y);
+                }
+                else {
+                    str += ", Y= " + this.y;
+                }
+                return str;
+            }
+        },
+        series: [{
+                name: xaxis + ' vs. ' + yaxis,
+                color: 'rgba(223, 83, 83, .5)',
+                data: ret_obj
+            }
+        ]
+    };
+
+    if (y_scale == "linear") {
+        options.yAxis.min = 0;
+    } else if (yaxis != "start_time") {
+        options.yAxis.min = 1;
+
+    }
+    if (x_scale == "linear") {
+        options.xAxis.min = 0;
+    } else if (xaxis != "start_time") {
+        options.xAxis.min = 1;
+    }
+
+    $("#chart-container").highcharts(options);
+
+    var element = React.createElement(Chart, {container: 'chart', options: options});
+
+    if (typeof window !== 'undefined') {
+      ReactDOM.render(element, document.getElementById('chart'));
+    }
+
+}
+
+
+var setup_chart_12 = function(chart_data)
+{
+  $("#chart-config-sel-x").html(x_options_list);
+  $("#chart-config-sel-y").html(y_options_list);
+  $("#chart-config").toggle();
+  $("#chart-config-sel-x").val("nprocs");
+  $("#chart-config-sel-y").val("total_bytes");
+  $("#chart-config-sel-x-scale").val("logarithmic");
+  $("#chart-config-sel-y-scale").val("logarithmic");
+  
+  $("#chart-config-button").click(function () {
+    var x = $("#chart-config-sel-x").val();
+    var y = $("#chart-config-sel-y").val();
+    var x_scale = $("#chart-config-sel-x-scale").val();
+    var y_scale = $("#chart-config-sel-y-scale").val();
+
+    make_chart(x, y, x_scale, y_scale, chart_data);
+  });
+
 };
 
 
@@ -437,19 +794,32 @@ var callback = function (data) {
   console.log("options");
   console.log(opts);
 
-
-  var element = React.createElement(Chart, {container: 'chart', options: opts});
-
-  if (typeof window !== 'undefined') {
-    ReactDOM.render(element, document.getElementById('chart'));
+  
+  if (chart_id == "12")
+  {
+    setup_chart_12(data);    
   }
+  else
+  {
+    var element = React.createElement(Chart, {container: 'chart', options: opts});
+
+    if (typeof window !== 'undefined') {
+      ReactDOM.render(element, document.getElementById('chart'));
+    }
+  }
+
+  // var element = React.createElement(Chart, {container: 'chart', options: opts});
+
+  // if (typeof window !== 'undefined') {
+  //   ReactDOM.render(element, document.getElementById('chart'));
+  // }
 };
 
 var handleClick = function(props)
 {
   var chart_id = props.item.id;
   $("#chart").html("<h1>LOADING CHART</h1>");
-
+  
   var data = {
     url: "test",
     chart: chart_id
@@ -472,12 +842,12 @@ var handleClick = function(props)
     });
   }
 }
-
+//style={{"backgroundColor":"white"}}
 var MenuRow = React.createClass({
   render: function () {
     return (
-      <li style={{"backgroundColor":"white"}} onClick={handleClick.bind(this, this.props)}>
-        {this.props.item.title}
+      <li  onClick={handleClick.bind(this, this.props)}>
+        <button class="btn btn-primary">{this.props.item.title}</button>
       </li>
     );
   }

@@ -53,6 +53,7 @@
     "bootstrap": "^3.3.6",
     "highcharts": "^4.2.4",
     "jquery": "^2.2.3",
+    "react-bootstrap": "^0.29.3",
     "react-bootstrap-datetimepicker": "0.0.22"
   }
 }
