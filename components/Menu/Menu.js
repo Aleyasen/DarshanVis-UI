@@ -66,7 +66,7 @@ function num_procs_formatter_str(c, suffix) {
 // CONSTANTS
 // holds chart data
 var charts = {
-  "12" :
+  "17" :
   {
     "title": {
         "text": "Scatter plot of application's I/O characteristics"
@@ -98,7 +98,7 @@ var charts = {
         ]
     }
   },
-  "17" :
+  "12" :
   {
     "chart": {
         "zoomType": "xy"
@@ -391,9 +391,7 @@ var chart_series = {
             "name": "Percentage of runtime spent in I/O",
             "not-in-chart": true
         }
-    ],
-  "17" : [
-  ]
+    ]
 };
 
 var axisTitles = {
@@ -404,8 +402,8 @@ var axisTitles = {
     "uid" : "User ID"
 };
 
-var x_options = charts["12"]["xAxis"]["options"];
-var y_options = charts["12"]["yAxis"]["options"];
+var x_options = charts["17"]["xAxis"]["options"];
+var y_options = charts["17"]["yAxis"]["options"];
 var x_options_list = "";
 var y_options_list = "";
 x_options.forEach(function(item)
@@ -434,8 +432,8 @@ function date_formatter(string) {
 }
 
 var make_chart = function (xaxis, yaxis, x_scale, y_scale, data) {
-    console.log("data");
-    console.log(data);
+    // console.log("data");
+    // console.log(data);
     // var series_obj = all_data["queryresult"];
     var series_obj = data;
     var str_s1 = series_obj[xaxis];
@@ -671,11 +669,10 @@ var make_chart = function (xaxis, yaxis, x_scale, y_scale, data) {
     if (typeof window !== 'undefined') {
       ReactDOM.render(element, document.getElementById('chart'));
     }
-
 }
 
 
-var setup_chart_12 = function(chart_data)
+var setup_chart_special = function(chart_data)
 {
   $("#chart-config-sel-x").html(x_options_list);
   $("#chart-config-sel-y").html(y_options_list);
@@ -767,40 +764,40 @@ var callback = function (data) {
   console.log("DATA");
   console.log(data);
   var chart_id = this.chart;
-  var opts = charts[chart_id];
-  var series = chart_series[chart_id];
-  console.log("SERIES:");
-  console.log(series);
-  var queryResult = data;
-  var opts_series = [];
-  for (var i = 0; i < series.length; i++) {
-    var attr = series[i]["attribute"];
-    var qr = queryResult[attr];
-    if (qr != null) {
-      series[i]["data"] = [];
-      for (var j = 0; j < qr.length; j++) {
-        var num = Number(qr[j]);
-        if (num != 0) {
-          series[i]["data"].push([j, num]);
-        }
-      }
-      opts_series.push(series[i]);
-    }
-  }
-  console.log("OPTS SERIES");
-  console.log(opts_series);
-
-  opts.series = opts_series;
-  console.log("options");
-  console.log(opts);
-
-  
-  if (chart_id == "12")
+ 
+  if (chart_id == "17")
   {
-    setup_chart_12(data);    
+    setup_chart_special(data);    
   }
   else
   {
+    $("#chart-config").hide();
+    var opts = charts[chart_id];
+    var series = chart_series[chart_id];
+    console.log("SERIES:");
+    console.log(series);
+    var queryResult = data;
+    var opts_series = [];
+    for (var i = 0; i < series.length; i++) {
+      var attr = series[i]["attribute"];
+      var qr = queryResult[attr];
+      if (qr != null) {
+        series[i]["data"] = [];
+        for (var j = 0; j < qr.length; j++) {
+          var num = Number(qr[j]);
+          if (num != 0) {
+            series[i]["data"].push([j, num]);
+          }
+        }
+        opts_series.push(series[i]);
+      }
+    }
+    console.log("OPTS SERIES");
+    console.log(opts_series);
+
+    opts.series = opts_series;
+    console.log("options");
+    console.log(opts);
     var element = React.createElement(Chart, {container: 'chart', options: opts});
 
     if (typeof window !== 'undefined') {
@@ -847,7 +844,7 @@ var MenuRow = React.createClass({
   render: function () {
     return (
       <li  onClick={handleClick.bind(this, this.props)}>
-        <button class="btn btn-primary">{this.props.item.title}</button>
+        <button class="btn btn-primary btn-block">{this.props.item.title}</button>
       </li>
     );
   }
