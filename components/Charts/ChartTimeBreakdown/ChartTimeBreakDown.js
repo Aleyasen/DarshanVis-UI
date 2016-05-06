@@ -6,6 +6,7 @@
 
 import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
+import config from '../../../config';
 
 var $ = require('jquery');
 var Highcharts = require('highcharts');
@@ -197,8 +198,8 @@ var callback = function (data) {
   }
 };
 // if (typeof window !== 'undefined') {
-  // var chart_id = prompt("Please enter desired chart", "8");
-  var chart_id = 12;
+// var chart_id = prompt("Please enter desired chart", "8");
+var chart_id = 12;
 // }
 
 
@@ -208,7 +209,7 @@ var data = {
 }
 if (typeof window !== 'undefined') {
   $.ajax({
-    url: "http://localhost/DarshanVis-API/index.php/jobs/filter",
+    url: config.server_url + '/index.php/jobs/filter',
     // url: "http://localhost/index.php/jobs/filter",
     dataType: 'json',
     type: 'POST',
