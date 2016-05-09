@@ -834,9 +834,10 @@ var callback = function (data) {
 };
 
 var handleClick = function (props) {
+  console.log("handle click");
   var chart_id = props.item.id;
   $("#chart").html("<h1>LOADING CHART</h1>");
-
+  $("#chart_id_storage").val(chart_id);
   var data = {
     url: "test",
     chart: chart_id
