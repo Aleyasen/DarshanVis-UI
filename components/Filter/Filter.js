@@ -5,7 +5,12 @@
  */
 
 import React, {PropTypes} from 'react';
+import config from '../../config';
+var Chart = require('../Charts/Chart');
+import ReactDOM from 'react-dom';
+var $ = require('jquery');
 var DateTimeField = require('react-bootstrap-datetimepicker');
+
 
 function Filter({children}) {
   var numapp_placeholder = "Apps#";

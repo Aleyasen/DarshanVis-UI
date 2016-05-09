@@ -7,6 +7,7 @@
 import React, { PropTypes } from 'react';
 import './Layout.scss';
 import Navigation from '../Navigation';
+var $ = require("jquery");
 
 function Layout({ children }) {
   return (

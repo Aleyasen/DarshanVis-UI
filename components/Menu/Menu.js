@@ -8,7 +8,9 @@ import React, {PropTypes} from 'react';
 import config from '../../config';
 var Chart = require('../Charts/Chart');
 import ReactDOM from 'react-dom';
-
+var $ = require("jquery");
+// require("jquery-ui/autocomplete");
+require("jquery-ui");
 
 var sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 var num_sizes = ['', 'K', 'M', 'B', 'Tr', '', ''];
@@ -637,7 +639,7 @@ var make_chart = function (xaxis, yaxis, x_scale, y_scale, data) {
     options.xAxis.min = 1;
   }
 
-  $("#chart-container").highcharts(options);
+  // $("#chart-container").highcharts(options);
 
   var element = React.createElement(Chart, {container: 'chart', options: options});
 
@@ -734,9 +736,9 @@ var MenuRowGroup = React.createClass({
 
 var callback = function (data) {
   console.log("entered callback");
-  console.log(this.chart);
-  console.log("DATA");
-  console.log(data);
+  // console.log(this.chart);
+  // console.log("DATA");
+  // console.log(data);
   var chart_id = this.chart;
 
   if (chart_id == "17") {
@@ -746,8 +748,8 @@ var callback = function (data) {
     $("#chart-config").hide();
     var opts = charts[chart_id];
     var series = chart_series[chart_id];
-    console.log("SERIES:");
-    console.log(series);
+    // console.log("SERIES:");
+    // console.log(series);
     var queryResult = data;
     var opts_series = [];
     for (var i = 0; i < series.length; i++) {
@@ -764,18 +766,67 @@ var callback = function (data) {
         opts_series.push(series[i]);
       }
     }
-    console.log("OPTS SERIES");
+    // console.log("OPTS SERIES");
     console.log(opts_series);
 
     opts.series = opts_series;
-    console.log("options");
-    console.log(opts);
+    // console.log("options");
+    // console.log(opts);
     var element = React.createElement(Chart, {container: 'chart', options: opts});
 
     if (typeof window !== 'undefined') {
       ReactDOM.render(element, document.getElementById('chart'));
     }
   }
+  if (typeof window != 'undefined')
+  {
+    $.get(config.server_url + '/index.php/jobs/UserList', {
+        user: "",
+        application: "null"
+    },
+    function(data){
+        var users = data;
+        $.get(config.server_url + '/index.php/jobs/ApplicationList', {
+            application: "",
+            user: "null"
+        },
+        function(data){
+            var apps = data;
+            console.log(apps);
+            console.log(users);
+            // $("#user-typeahead").typeahead({source:users});
+            // $("#application-typeahead").typeahead({source: apps});
+
+            $("#user-typeahead").autocomplete({source: users});
+            $("#application-typeahead").autocomplete({source: apps});
+        });
+    });
+//    $('#user-textbox').typeahead({
+//       source: function (query, process) {
+//           return $.get(config.server_url + '/index.php/jobs/UserList', {
+//               user: query,
+//               application: $("#application-textbox").val() ? $("#application-textbox").val() : "null"
+//           },
+//           function (data) {
+//               console.log(data);
+//               return process(data);
+//           });
+//       }
+//   });
+
+//   $('#application-textbox').typeahead({
+//       source: function (query, process) {
+//           return $.get(config.server_url + '/index.php/jobs/ApplicationList', {
+//               application: query,
+//               user: $("#user-textbox").val() ? $("#user-textbox").val() : "null"
+//           },
+//           function (data) {
+// //                console.log(data);
+//               return process(data);
+//           });
+//       }
+//   });
+}
 
   // var element = React.createElement(Chart, {container: 'chart', options: opts});
 

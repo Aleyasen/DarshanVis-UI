@@ -9,7 +9,6 @@ import React, {PropTypes} from 'react';
 function Table({children}) {
   return (
     <div>
-      This is Table
     </div>
   );
 }
