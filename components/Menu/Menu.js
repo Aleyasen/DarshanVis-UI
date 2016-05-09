@@ -10,7 +10,9 @@ var Chart = require('../Charts/Chart');
 import ReactDOM from 'react-dom';
 var $ = require("jquery");
 // require("jquery-ui/autocomplete");
-require("jquery-ui");
+if (typeof document !== 'undefined') {
+  require("jquery-ui");
+}
 
 var sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 var num_sizes = ['', 'K', 'M', 'B', 'Tr', '', ''];
@@ -726,8 +728,8 @@ var MenuRowGroup = React.createClass({
     });
     return (
 
-      <li style={{"backgroundColor":"#ccc"}}>
-        {this.props.item.name}
+      <li style={{"backgroundColor":"#ffffff"}}>
+        <b>{this.props.item.name}</b>
         {rows}
       </li>
     );
@@ -778,27 +780,40 @@ var callback = function (data) {
       ReactDOM.render(element, document.getElementById('chart'));
     }
   }
-  if (typeof window != 'undefined')
-  {
+  if (typeof window != 'undefined') {
     $.get(config.server_url + '/index.php/jobs/UserList', {
         user: "",
         application: "null"
-    },
-    function(data){
+      },
+      function (data) {
         var users = data;
         $.get(config.server_url + '/index.php/jobs/ApplicationList', {
             application: "",
             user: "null"
-        },
-        function(data){
+          },
+          function (data) {
             var apps = data;
             // $("#user-typeahead").typeahead({source:users});
             // $("#application-typeahead").typeahead({source: apps});
 
-            $("#user-typeahead").autocomplete({source: users});
-            $("#application-typeahead").autocomplete({source: apps});
-        });
-    });
+            $("#user-typeahead").autocomplete({
+              source: users,
+              messages: {
+                noResults: '',
+                results: function () {
+                }
+              }
+            });
+            $("#application-typeahead").autocomplete({
+              source: apps,
+              messages: {
+                noResults: '',
+                results: function () {
+                }
+              }
+            });
+          });
+      });
 //    $('#user-textbox').typeahead({
 //       source: function (query, process) {
 //           return $.get(config.server_url + '/index.php/jobs/UserList', {
@@ -824,7 +839,7 @@ var callback = function (data) {
 //           });
 //       }
 //   });
-}
+  }
 
   // var element = React.createElement(Chart, {container: 'chart', options: opts});
 
@@ -836,7 +851,7 @@ var callback = function (data) {
 var handleClick = function (props) {
   console.log("handle click");
   var chart_id = props.item.id;
-  $("#chart").html("<h1>LOADING CHART</h1>");
+  $("#chart").html("<div><center>Loading...</center></div>");
   $("#chart_id_storage").val(chart_id);
   var data = {
     url: "test",
@@ -865,13 +880,13 @@ var MenuRow = React.createClass({
   render: function () {
     return (
       <li onClick={handleClick.bind(this, this.props)}>
-        <button class="btn btn-primary btn-block">{this.props.item.title}</button>
+        <a>{this.props.item.title}</a>
       </li>
     );
   }
 });
 
-var cats = [
+var cats_all = [
   {
     "id": 2,
     "name": "Analyze Application I/O Behavior",
@@ -921,6 +936,25 @@ var cats = [
         "id": 15,
         "title": "Application's Data Size Distribution"
       }
+    ]
+  }
+];
+
+
+var cats = [
+  {
+    "id": 2,
+    "name": "Analyze Application I/O Behavior",
+    "charts": [
+      {
+        "id": 17,
+        "title": "Overview of I/O characteristics"
+      },
+      {
+        "id": 12,
+        "title": "Time Breakdown"
+      }
+
     ]
   }
 ];

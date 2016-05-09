@@ -8,9 +8,13 @@ import React, {PropTypes} from 'react';
 import config from '../../config';
 var Chart = require('../Charts/Chart');
 import ReactDOM from 'react-dom';
+import moment from "moment";
+
 var $ = require('jquery');
 var DateTimeField = require('react-bootstrap-datetimepicker');
-require("jquery-ui");
+if (typeof document !== 'undefined') {
+  require("jquery-ui");
+}
 
 var sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 var num_sizes = ['', 'K', 'M', 'B', 'Tr', '', ''];
@@ -713,28 +717,43 @@ var callback = function (data) {
       ReactDOM.render(element, document.getElementById('chart'));
     }
   }
-  if (typeof window != 'undefined')
-  {
+  if (typeof window != 'undefined') {
     $.get(config.server_url + '/index.php/jobs/UserList', {
         user: "",
         application: "null"
-    },
-    function(data){
+      },
+      function (data) {
         var users = data;
         $.get(config.server_url + '/index.php/jobs/ApplicationList', {
             application: "",
             user: "null"
-        },
-        function(data){
+          },
+          function (data) {
             var apps = data;
             // $("#user-typeahead").typeahead({source:users});
             // $("#application-typeahead").typeahead({source: apps});
 
-            $("#user-typeahead").autocomplete({source: users});
-            $("#application-typeahead").autocomplete({source: apps});
-        });
-    });
-}
+            $("#user-typeahead").autocomplete(
+              {
+                source: users,
+                messages: {
+                  noResults: '',
+                  results: function () {
+                  }
+                }
+              }
+            );
+            $("#application-typeahead").autocomplete({
+              source: apps,
+              messages: {
+                noResults: '',
+                results: function () {
+                }
+              }
+            });
+          });
+      });
+  }
 
   // var element = React.createElement(Chart, {container: 'chart', options: opts});
 
@@ -748,7 +767,9 @@ function Filter({children}) {
   var numapp_placeholder = "Apps#";
   var user_placeholder = "User";
   var app_placeholder = "Application"
-
+  var start_date = moment().subtract(1, 'years');
+  var end_date = moment();
+  var end_date_min = start_date;
   return (
     <div>
 
@@ -759,7 +780,8 @@ function Filter({children}) {
                     <i className="glyphicon glyphicon-user" data-toggle="tooltip" data-placement="left"
                        title="My Tooltip text"></i>
                 </span>
-            <input type="text" name="numapp" className="form-control cust_autocomplete" id="numapp-typeahead" data-provide="typeahead"
+            <input type="text" name="numapp" className="form-control cust_autocomplete" id="numapp-typeahead"
+                   data-provide="typeahead"
                    placeholder={numapp_placeholder} autocomplete="off"/>
           </div>
         </div>
@@ -770,7 +792,8 @@ function Filter({children}) {
                     <i className="glyphicon glyphicon-user" data-toggle="tooltip" data-placement="left"
                        title="My Tooltip text"></i>
                 </span>
-            <input type="text" name="user" className="form-control cust_autocomplete" id="user-typeahead" data-provide="typeahead"
+            <input type="text" name="user" className="form-control cust_autocomplete" id="user-typeahead"
+                   data-provide="typeahead"
                    placeholder={user_placeholder} autocomplete="off"/>
           </div>
         </div>
@@ -789,13 +812,14 @@ function Filter({children}) {
 
         <div className="form-group col-md-4">
           <DateTimeField
-            defaultText="Please select a date"
+            dateTime={start_date}
             onChange={startDateChanged}
-           />
+          />
         </div>
         <div className="form-group col-md-4">
-          <DateTimeField 
-            defaultText="Please select a date"
+          <DateTimeField
+            dateTime={end_date}
+            minDate={end_date_min}
             onChange={endDateChanged}
           />
         </div>
@@ -805,7 +829,8 @@ function Filter({children}) {
         </div>
 
         <div className="col-md-1 form-group">
-          <button onClick={updateChart} type="button" id="sort_button_top" className="btn tiny-button" data-toggle="modal"
+          <button onClick={sortChart} type="button" id="sort_button_top" className="btn tiny-button"
+                  data-toggle="modal"
                   href="#sorting_modal">
             <i className="glyphicon glyphicon-sort-by-alphabet"></i>
             Sort
@@ -813,7 +838,7 @@ function Filter({children}) {
         </div>
 
         <div className="col-md-2 form-group">
-          <button onClick={updateChart} type="button" id="toggle-percentage"
+          <button onClick={toggleChart} type="button" id="toggle-percentage"
                   className="btn tiny-button">
             %
           </button>
@@ -826,16 +851,40 @@ function Filter({children}) {
   );
 }
 
-function startDateChanged(e)
-{
+function startDateChanged(e) {
+  end_date_min = e;
   console.log(e);
   $("#start_date_storage").val(e);
 }
 
-function endDateChanged(e)
-{
+function endDateChanged(e) {
   console.log(e);
   $("#end_date_storage").val(e);
+}
+
+function sortChart(e) {
+
+}
+
+function toggleSort(e) {
+  var chart=$("#chart").highcharts();
+  for (var i = 0; i < 5; i++) {
+    chart.series[i].update({
+      stacking: stacking ? "normal" : "percent"
+    });
+  }
+
+  chart.yAxis[0].axisTitle.attr({
+    text: stacking ? "Distribution of time (s)" : "Percentage of time (%)"
+  });
+
+  if (!stacking) {
+    chart.yAxis[0].setExtremes(0, 100);
+  } else {
+    chart.yAxis[0].setExtremes(null, null);
+  }
+  stacking = !stacking;
+  chart.redraw();
 }
 
 function updateChart(e) {
@@ -848,8 +897,8 @@ function updateChart(e) {
   var end = $("#start_date_storage").val();
 
   var chart_id = $("#chart_id_storage").val();
-  $("#chart").html("<h1>LOADING CHART</h1>");
-  
+  $("#chart").html("<div><center>Loading...</center></div>");
+
   var data = {
     url: "test",
     chart: chart_id,

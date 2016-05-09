@@ -31,6 +31,7 @@ const JS_LOADER = {
     path.resolve(__dirname, '../config.js'),
   ],
   loader: 'babel-loader',
+  query: {compact: false}
 };
 
 
