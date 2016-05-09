@@ -866,7 +866,8 @@ function sortChart(e) {
 
 }
 
-function toggleSort(e) {
+function toggleChart(e) {
+  console.log("starting toggle");
   var chart=$("#chart").highcharts();
   for (var i = 0; i < 5; i++) {
     chart.series[i].update({
@@ -885,6 +886,7 @@ function toggleSort(e) {
   }
   stacking = !stacking;
   chart.redraw();
+  console.log("toggle done");
 }
 
 function updateChart(e) {
