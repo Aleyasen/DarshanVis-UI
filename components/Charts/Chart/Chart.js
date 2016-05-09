@@ -27,6 +27,7 @@ var Chart = React.createClass({
   componentWillUnmount: function () {
     this.chart.destroy();
   },
+  
   //Create the div which the chart will be rendered to.
   render: function () {
     return React.createElement('div', {id: this.props.container});

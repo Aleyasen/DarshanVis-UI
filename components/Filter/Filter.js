@@ -9,7 +9,7 @@ import config from '../../config';
 var Chart = require('../Charts/Chart');
 import ReactDOM from 'react-dom';
 import moment from "moment";
-
+var Highcharts = require('highcharts');
 var $ = require('jquery');
 var DateTimeField = require('react-bootstrap-datetimepicker');
 if (typeof document !== 'undefined') {
@@ -236,7 +236,7 @@ var chart_series = {
       "name": "Non-global Data I/O",
       "description": "Non-global data I/O: The amount of time this job spent in function calls to read/write its files not accessed by all processes.",
       "color": "#5C9430",
-      "stacking": "normal",
+      "stacking": "percent",
       "type": "column",
       "yAxis": 0
     },
@@ -245,7 +245,7 @@ var chart_series = {
       "name": "Non-global Metadata",
       "description": "Non-global Metadata: The amount of time this job spent in metadata function calls (open, close, seek, etc.) for non-global files, i.e., files that one or more but not all processes opened.",
       "color": "#C73308",
-      "stacking": "normal",
+      "stacking": "percent",
       "type": "column",
       "yAxis": 0
     },
@@ -263,7 +263,7 @@ var chart_series = {
       "name": "Global Metadata",
       "description": "Global Metadata: The amount of time this job spent in metadata function calls (open, close, seek, etc.) for global files, i.e., files that all processes opened.",
       "color": "#F25B47",
-      "stacking": "normal",
+      "stacking": "percent",
       "type": "column",
       "yAxis": 0
     },
@@ -272,7 +272,7 @@ var chart_series = {
       "name": "Not I/O",
       "description": "Not I/O: The amount of time this job spent outside of I/O function calls (data and metadata).",
       "color": "#BDD0D5",
-      "stacking": "normal",
+      "stacking": "percent",
       "type": "column",
       "visible": false,
       "yAxis": 0
@@ -692,17 +692,19 @@ var callback = function (data) {
     var queryResult = data;
     var opts_series = [];
     for (var i = 0; i < series.length; i++) {
-      var attr = series[i]["attribute"];
-      var qr = queryResult[attr];
-      if (qr != null) {
-        series[i]["data"] = [];
-        for (var j = 0; j < qr.length; j++) {
-          var num = Number(qr[j]);
-          if (num != 0) {
-            series[i]["data"].push([j, num]);
+      if (!series[i]["not-in-chart"]) {
+        var attr = series[i]["attribute"];
+        var qr = queryResult[attr];
+        if (qr != null) {
+          series[i]["data"] = [];
+          for (var j = 0; j < qr.length; j++) {
+            var num = Number(qr[j]);
+            if (num != 0) {
+              series[i]["data"].push([j, num]);
+            }
           }
+          opts_series.push(series[i]);
         }
-        opts_series.push(series[i]);
       }
     }
     // console.log("OPTS SERIES");
@@ -865,10 +867,13 @@ function endDateChanged(e) {
 function sortChart(e) {
 
 }
+var stacking = false;
+var index = $("#chart").data('highchartsChart');
+var chart = Highcharts.charts[index];
 
 function toggleChart(e) {
   console.log("starting toggle");
-  var chart=$("#chart").highcharts();
+  // var chart = $("#chart").highcharts();
   for (var i = 0; i < 5; i++) {
     chart.series[i].update({
       stacking: stacking ? "normal" : "percent"
