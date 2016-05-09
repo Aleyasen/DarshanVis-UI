@@ -792,8 +792,6 @@ var callback = function (data) {
         },
         function(data){
             var apps = data;
-            console.log(apps);
-            console.log(users);
             // $("#user-typeahead").typeahead({source:users});
             // $("#application-typeahead").typeahead({source: apps});
 
