@@ -291,7 +291,7 @@ var chart_series = {
       "marker": {
         "symbol": "diamond",
         "enabled": true,
-        "radius": 5,
+        "radius": 3,
         "fillColor": "#7F77B4"
       }
     }
@@ -310,7 +310,7 @@ var chart_series = {
       "marker": {
         "symbol": "circle",
         "enabled": true,
-        "radius": 5,
+        "radius": 3,
         "fillColor": "#BF53B4"
       }
     },
@@ -328,7 +328,7 @@ var chart_series = {
       "marker": {
         "symbol": "triangle-down",
         "enabled": true,
-        "radius": 5,
+        "radius": 3,
         "fillColor": "#000000"
       }
     },
@@ -346,7 +346,7 @@ var chart_series = {
       "marker": {
         "symbol": "triangle",
         "enabled": true,
-        "radius": 5,
+        "radius": 3,
         "fillColor": "#000099"
       }
     },
@@ -364,7 +364,7 @@ var chart_series = {
       "marker": {
         "symbol": "triangle",
         "enabled": true,
-        "radius": 5,
+        "radius": 3,
         "fillColor": "#FF9900"
       }
     },
@@ -382,7 +382,7 @@ var chart_series = {
       "marker": {
         "symbol": "triangle",
         "enabled": true,
-        "radius": 5,
+        "radius": 3,
         "fillColor": "#CC00CC"
       }
     },
@@ -776,17 +776,7 @@ function Filter({children}) {
     <div>
 
       <div className="row">
-        <div className="form-group col-md-4 ">
-          <div className="input-group">
-                <span className="input-group-addon">
-                    <i className="glyphicon glyphicon-user" data-toggle="tooltip" data-placement="left"
-                       title="My Tooltip text"></i>
-                </span>
-            <input type="text" name="numapp" className="form-control cust_autocomplete" id="numapp-typeahead"
-                   data-provide="typeahead"
-                   placeholder={numapp_placeholder} autocomplete="off"/>
-          </div>
-        </div>
+
 
         <div className="form-group col-md-4">
           <div className="input-group">
@@ -812,6 +802,8 @@ function Filter({children}) {
           </div>
         </div>
 
+      </div>
+      <div className="row">
         <div className="form-group col-md-4">
           <DateTimeField
             dateTime={start_date}
@@ -846,6 +838,7 @@ function Filter({children}) {
           </button>
         </div>
       </div>
+
       <input type="hidden" id="chart_id_storage"/>
       <input type="hidden" id="start_date_storage"/>
       <input type="hidden" id="end_date_storage"/>
@@ -868,30 +861,33 @@ function sortChart(e) {
 
 }
 var stacking = false;
-var index = $("#chart").data('highchartsChart');
-var chart = Highcharts.charts[index];
-
+if (typeof document !== 'undefined') {
+  var index = $("#chart").data('highchartsChart');
+  var chart = Highcharts.charts[index];
+}
 function toggleChart(e) {
-  console.log("starting toggle");
-  // var chart = $("#chart").highcharts();
-  for (var i = 0; i < 5; i++) {
-    chart.series[i].update({
-      stacking: stacking ? "normal" : "percent"
+  if (typeof document !== 'undefined') {
+    console.log("starting toggle");
+    // var chart = $("#chart").highcharts();
+    for (var i = 0; i < 5; i++) {
+      chart.series[i].update({
+        stacking: stacking ? "normal" : "percent"
+      });
+    }
+
+    chart.yAxis[0].axisTitle.attr({
+      text: stacking ? "Distribution of time (s)" : "Percentage of time (%)"
     });
-  }
 
-  chart.yAxis[0].axisTitle.attr({
-    text: stacking ? "Distribution of time (s)" : "Percentage of time (%)"
-  });
-
-  if (!stacking) {
-    chart.yAxis[0].setExtremes(0, 100);
-  } else {
-    chart.yAxis[0].setExtremes(null, null);
+    if (!stacking) {
+      chart.yAxis[0].setExtremes(0, 100);
+    } else {
+      chart.yAxis[0].setExtremes(null, null);
+    }
+    stacking = !stacking;
+    chart.redraw();
+    console.log("toggle done");
   }
-  stacking = !stacking;
-  chart.redraw();
-  console.log("toggle done");
 }
 
 function updateChart(e) {
