@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1bf2bb67-8d84-4644-98f2-d299f346d55e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/components/Sorting/Sorting.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/components/Sorting/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/Filter/Filter.js" afterPath="$PROJECT_DIR$/components/Filter/Filter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/MainContainer/MainContainer.js" afterPath="$PROJECT_DIR$/components/MainContainer/MainContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/Menu/Menu.js" afterPath="$PROJECT_DIR$/components/Menu/Menu.js" />
     </list>
     <ignored path="DarshanVis-UI.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Menu.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Menu.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/Menu/Menu.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="382" column="19" selection-start-line="382" selection-start-column="19" selection-end-line="382" selection-end-column="19" />
+            <state relative-caret-position="160">
+              <caret line="683" column="79" selection-start-line="683" selection-start-column="73" selection-end-line="683" selection-end-column="79" />
               <folding>
                 <element signature="e#152#191#0" expanded="true" />
                 <marker date="1462835127522" expanded="true" signature="22562:23085" placeholder="{...}" />
@@ -41,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Sorting.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Sorting.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/Sorting/Sorting.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="144" column="0" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+            <state relative-caret-position="245">
+              <caret line="41" column="53" selection-start-line="41" selection-start-column="53" selection-end-line="41" selection-end-column="53" />
               <folding>
                 <element signature="e#152#191#0" expanded="true" />
               </folding>
@@ -96,8 +91,8 @@
       <file leaf-file-name="Filter.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/Filter/Filter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="709" column="39" selection-start-line="709" selection-start-column="6" selection-end-line="709" selection-end-column="39" />
+            <state relative-caret-position="346">
+              <caret line="968" column="29" selection-start-line="968" selection-start-column="21" selection-end-line="968" selection-end-column="29" />
               <folding>
                 <element signature="e#152#191#0" expanded="true" />
                 <element signature="e#267#300#0" expanded="true" />
@@ -154,8 +149,8 @@
         <option value="$PROJECT_DIR$/components/Sorting/package.json" />
         <option value="$PROJECT_DIR$/components/MainContainer/MainContainer.js" />
         <option value="$PROJECT_DIR$/components/Sorting/Sorting.js" />
-        <option value="$PROJECT_DIR$/components/Filter/Filter.js" />
         <option value="$PROJECT_DIR$/components/Menu/Menu.js" />
+        <option value="$PROJECT_DIR$/components/Filter/Filter.js" />
       </list>
     </option>
   </component>
@@ -428,12 +423,12 @@
       <workItem from="1461282279004" duration="21530000" />
       <workItem from="1461352737292" duration="16879000" />
       <workItem from="1462557721976" duration="1271000" />
-      <workItem from="1462816337011" duration="15855000" />
+      <workItem from="1462816337011" duration="16732000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64749000" />
+    <option name="totallyTimeSpent" value="65626000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -765,7 +760,7 @@
         <state relative-caret-position="192">
           <caret line="16" column="42" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="42" />
           <folding>
-            <element signature="e#152#191#0" expanded="true" />
+            <element signature="e#152#191#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -834,16 +829,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Sorting/Sorting.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="144" column="0" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
-          <folding>
-            <element signature="e#152#191#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/before/js/dv/utils.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1411">
@@ -862,8 +847,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/Filter/Filter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="709" column="39" selection-start-line="709" selection-start-column="6" selection-end-line="709" selection-end-column="39" />
+        <state relative-caret-position="346">
+          <caret line="968" column="29" selection-start-line="968" selection-start-column="21" selection-end-line="968" selection-end-column="29" />
           <folding>
             <element signature="e#152#191#0" expanded="true" />
             <element signature="e#267#300#0" expanded="true" />
@@ -879,11 +864,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/Menu/Menu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="382" column="19" selection-start-line="382" selection-start-column="19" selection-end-line="382" selection-end-column="19" />
+        <state relative-caret-position="160">
+          <caret line="683" column="79" selection-start-line="683" selection-start-column="73" selection-end-line="683" selection-end-column="79" />
           <folding>
             <element signature="e#152#191#0" expanded="true" />
             <marker date="1462835127522" expanded="true" signature="22562:23085" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Sorting/Sorting.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="41" column="53" selection-start-line="41" selection-start-column="53" selection-end-line="41" selection-end-column="53" />
+          <folding>
+            <element signature="e#152#191#0" expanded="true" />
           </folding>
         </state>
       </provider>

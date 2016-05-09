@@ -784,7 +784,7 @@ function Filter({children}) {
   var numapp_placeholder = "Apps#";
   var user_placeholder = "User";
   var app_placeholder = "Application"
-  var start_date = moment().subtract(1, 'years');
+  var start_date = moment().subtract(5, 'years');
   var end_date = moment();
   var end_date_min = start_date;
   console.log("in the sorting >>>>>>>>>>>>>");
@@ -966,7 +966,7 @@ function populateDropdown(selector, options, labels) {
       }
 
       $(selector).append(str);
-      $(selector).selectpicker('refresh');
+      // $(selector).selectpicker('refresh');
     }
   }
 }
