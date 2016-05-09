@@ -106,6 +106,21 @@ var charts = {
     }
   },
   "12": {
+    "sorting": [
+      "notio",
+      "iotime",
+      "io_percent",
+      "localio",
+      "local_meta",
+      "globalio",
+      "global_meta",
+      "nprocs",
+      "total_bytes",
+      "thruput",
+      "unique_count",
+      "partshared_count",
+      "allshared_count"
+    ],
     "chart": {
       "zoomType": "xy"
     },
@@ -772,6 +787,17 @@ function Filter({children}) {
   var start_date = moment().subtract(1, 'years');
   var end_date = moment();
   var end_date_min = start_date;
+  console.log("in the sorting >>>>>>>>>>>>>");
+  var chart = charts["12"];
+  var series_ = chart_series["12"];
+  var options = chart.sorting;
+  var labels = [];
+  for (var i = 0; i < series_.length; i++) {
+    labels[series_[i].attribute] = series_[i].name;
+  }
+  populateDropdown(".sortpicker", options, labels);
+
+
   return (
     <div>
 
@@ -823,7 +849,7 @@ function Filter({children}) {
         </div>
 
         <div className="col-md-1 form-group">
-          <button onClick={sortChart} type="button" id="sort_button_top" className="btn tiny-button"
+          <button type="button" id="sort_button_top" className="btn tiny-button"
                   data-toggle="modal"
                   href="#sorting_modal">
             <i className="glyphicon glyphicon-sort-by-alphabet"></i>
@@ -930,6 +956,21 @@ function updateChart(e) {
     });
   }
 }
+
+function populateDropdown(selector, options, labels) {
+  if (typeof document !== 'undefined') {
+    var str = "";
+    if (typeof options != 'undefined') {
+      for (var i = 0; i < options.length; i++) {
+        str += '<option value="' + options[i] + '">' + labels[options[i]] + '</option>';
+      }
+
+      $(selector).append(str);
+      $(selector).selectpicker('refresh');
+    }
+  }
+}
+
 
 Filter.propTypes = {
   // children: PropTypes.element.isRequired,
