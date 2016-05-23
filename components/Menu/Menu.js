@@ -748,6 +748,10 @@ var callback = function (data) {
   if (chart_id == "17") {
     utils.setup_chart_special(data);
   }
+  else if (chart_id == "10" || chart_id == "9" || chart_id=="4")
+  {
+    utils.setup_top_chart(data);
+  }
   else {
     $("#chart-config").hide();
     var opts = utils.charts[chart_id];
@@ -959,6 +963,22 @@ var cats = [
         "title": "Time Breakdown"
       }
 
+    ],
+    "id":5,
+    "name":"Analyze Platform I/O Workload",
+    "charts": [
+      {
+        "id":10, 
+        "title": "Top Applications with Highest Amount of Data Read/Written"
+      },
+      {
+        "id":9, 
+        "title": "Top Applications with Highest I/O Time",
+      },
+      {
+        "id":4, 
+        "title": "Top Applications with Highest Runtime",
+      },
     ]
   }
 ];
