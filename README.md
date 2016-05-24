@@ -58,4 +58,4 @@ $ npm install
   * [Learn ES6](https://babeljs.io/docs/learn-es6/), [ES6 Features](https://github.com/lukehoban/es6features#readme)
 
 ---
-Made with ♥ by[contributors](https://github.com/Aleyasen/DarshanVis-UI/graphs/contributors) &nbsp;|&nbsp; MIT License
+Made with ♥ by [contributors](https://github.com/Aleyasen/DarshanVis-UI/graphs/contributors) &nbsp;|&nbsp; MIT License
