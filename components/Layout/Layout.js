@@ -12,7 +12,6 @@ var $ = require("jquery");
 function Layout({ children }) {
   return (
     <div>
-      <Navigation />
       {children}
     </div>
   );

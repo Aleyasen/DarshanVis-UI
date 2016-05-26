@@ -57,6 +57,7 @@
     "jquery-ui": "^1.10.5",
     "moment": "^2.13.0",
     "react-bootstrap": "^0.29.3",
-    "react-bootstrap-datetimepicker": "0.0.22"
+    "react-bootstrap-datetimepicker": "0.0.22",
+    "react-router": "^2.4.1"
   }
 }

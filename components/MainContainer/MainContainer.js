@@ -9,12 +9,14 @@ import React, {PropTypes} from 'react';
 import Menu from '../Menu';
 import ChartPage from '../Charts/SimpleChart';
 import Sorting from '../Sorting';
+import Navigation from '../Navigation';
 // import ChartPage from '../Charts/ChartTimeBreakDown';
 
 
 function MainContainer({params}) {
   return (
     <div className="container-fluid" style={{"paddingTop":"80px"}}>
+      <Navigation />
       <div className="row">
         <div className="col-sm-3 col-md-3">
           <Menu/>

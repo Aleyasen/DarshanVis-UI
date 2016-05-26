@@ -36,7 +36,7 @@ var Menu = React.createClass({
       for (j in this.state.items[i].charts) {
         if (this.state.items[i].charts[j].id == itemId) {
           this.state.items[i].charts[j].color = "#C5BFC7";
-          console.log("chage to red for " + this.state.items[i].charts[j].id);
+          // console.log("chage to red for " + this.state.items[i].charts[j].id);
         } else {
           this.state.items[i].charts[j].color = "white";
         }
@@ -198,8 +198,6 @@ var callback = function (data) {
 };
 
 var MenuRow = React.createClass({
-
-
   handleClick: function (e) {
     if (typeof window !== 'undefined') {
       this.props.updateMenu(this.props.item.id);
