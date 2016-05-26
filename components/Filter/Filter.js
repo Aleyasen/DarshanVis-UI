@@ -105,8 +105,8 @@ var callback = function (data) {
 
 function Filter({children}) {
   var numapp_placeholder = "Apps#";
-  var user_placeholder = "User";
-  var app_placeholder = "Application"
+  var user_placeholder = "All users";
+  var app_placeholder = "All apps"
   var start_date = moment().subtract(5, 'years');
   var end_date = moment();
   var end_date_min = start_date;
