@@ -672,6 +672,7 @@ export var setup_chart_special = function (chart_data) {
   $("#chart-config-sel-y").val("total_bytes");
   $("#chart-config-sel-x-scale").val("linear");
   $("#chart-config-sel-y-scale").val("linear");
+  
 
   $("#chart-config-button").click(function () {
     var x = $("#chart-config-sel-x").val();
