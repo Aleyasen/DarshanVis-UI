@@ -711,6 +711,7 @@ export var setup_top_chart = function (json_str) {
     `;
   $("#chart-container").append(cont15_div);
   $("#dv_table").insertBefore("#15-scatter-containers");
+
   var axisTitles = {
     "nprocs": "Number of Processes",
     "total_bytes": "Amount of Data read/written",

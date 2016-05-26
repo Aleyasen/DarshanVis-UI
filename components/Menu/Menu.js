@@ -181,7 +181,7 @@ var MenuRow = React.createClass({
 
 
   handleClick: function (e) {
-    console.log("Hello");
+    console.log("Hello handleClick");
     if (typeof window !== 'undefined') {
       console.log("before updatemenu");
       this.props.updateMenu();
@@ -215,7 +215,7 @@ var MenuRow = React.createClass({
   },
   render: function () {
     return (
-      <li style={{"background-color":this.props.item.color}} onClick={this.handleClick()}>
+      <li onClick={this.handleClick}>
         <a>{this.props.item.title}</a>
       </li>
     );
