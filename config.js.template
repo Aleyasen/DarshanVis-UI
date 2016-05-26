@@ -1,12 +1,7 @@
-/**
- * React Static Boilerplate
- * https://github.com/koistya/react-static-boilerplate
- * Copyright (c) Konstantin Tarkus (@koistya) | MIT license
- */
 
 export default {
-  title: 'React Static Boilerplate',
-  description: 'Static website generator for React.js web applications.',
+  title: 'DarshanVis :: Darshan Data Visualization Tool',
+  description: 'DarshanVis is Darshan (A Scalable HPC I/O Characterization Tool) Data Visualization Tool',
   googleAnalyticsId: 'UA-XXXXX-X',
-  server_url: 'http://localhost:9091/DarshanVis-API'
+  server_url: 'http://localhost/DarshanVis-API'
 };
