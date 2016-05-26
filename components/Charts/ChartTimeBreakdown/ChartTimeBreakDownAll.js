@@ -15,7 +15,6 @@ function ChartTimeBreakDownAll({params}) {
       <Filter data="params"/>
       <div id="chart-container2"/>
       <Table data="params"/>
-
     </div>
   );
 }

@@ -61,8 +61,9 @@ function MainContainer({params}) {
                        title="My Tooltip text"></i>
                 </span>
                   <select className="form-control" id="chart-config-sel-x-scale">
-                    <option value="logarithmic">Logarithmic</option>
                     <option value="linear">Linear</option>
+                    <option value="logarithmic">Logarithmic</option>
+
                   </select>
                 </div>
               </div>
@@ -75,8 +76,9 @@ function MainContainer({params}) {
                        title="My Tooltip text"></i>
                 </span>
                   <select className="form-control" id="chart-config-sel-y-scale">
-                    <option value="logarithmic">Logarithmic</option>
+
                     <option value="linear">Linear</option>
+                    <option value="logarithmic">Logarithmic</option>
                   </select>
                 </div>
               </div>

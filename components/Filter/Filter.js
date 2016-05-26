@@ -1,13 +1,6 @@
-/**
- * React Static Boilerplate
- * https://github.com/koistya/react-static-boilerplate
- * Copyright (c) Konstantin Tarkus (@koistya) | MIT license
- */
-
 import React, {PropTypes} from 'react';
 import config from '../../config';
 var Chart = require('../Charts/Chart');
-// require('../Utils')
 import * as utils from '../Utils';
 import ReactDOM from 'react-dom';
 import moment from "moment";

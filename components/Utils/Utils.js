@@ -670,8 +670,8 @@ export var setup_chart_special = function (chart_data) {
   $("#chart-config").toggle();
   $("#chart-config-sel-x").val("nprocs");
   $("#chart-config-sel-y").val("total_bytes");
-  $("#chart-config-sel-x-scale").val("logarithmic");
-  $("#chart-config-sel-y-scale").val("logarithmic");
+  $("#chart-config-sel-x-scale").val("linear");
+  $("#chart-config-sel-y-scale").val("linear");
 
   $("#chart-config-button").click(function () {
     var x = $("#chart-config-sel-x").val();
