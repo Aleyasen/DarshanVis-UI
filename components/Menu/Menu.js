@@ -21,6 +21,9 @@ var Menu = React.createClass({
   getInitialState: function () {
     return {activeMenu: ""};
   },
+  updateMenu: function () {
+    console.log("updateMenu");
+  },
   render: function () {
     var rowsgroup = [];
     // var items = categories.hello;
@@ -28,7 +31,7 @@ var Menu = React.createClass({
     var this_ = this;
     items.forEach(function (item) {
       item.color = "white";
-      rowsgroup.push(<MenuRowGroup item={item} activeMenu={this_.state.activeMenu}/>);
+      rowsgroup.push(<MenuRowGroup item={item} updateMenu={this_.updateMenu}/>);
     });
     return (
       <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -72,15 +75,9 @@ var MenuRowGroup = React.createClass({
     var rows = [];
     // var items = categories.hello;
     var charts = this.props.item.charts;
-    var activeMenu = this.props.activeMenu;
-
+    var this_ = this;
     charts.forEach(function (item) {
-      if (item.id == activeMenu) {
-        item.color = "yellow";
-      } else {
-        item.color = "white";
-      }
-      rows.push(<MenuRow item={item}/>);
+      rows.push(<MenuRow item={item} updateMenu={this_.props.updateMenu}/>);
     });
     return (
 
@@ -182,8 +179,14 @@ var callback = function (data) {
 
 var MenuRow = React.createClass({
 
+
   handleClick: function (e) {
+    console.log("Hello");
     if (typeof window !== 'undefined') {
+      console.log("before updatemenu");
+      this.props.updateMenu();
+      console.log("after udatemenu");
+
       console.log("handle click");
       var chart_id = this.props.item.id;
       $("#chart").html("<div><center>Loading...</center></div>");
@@ -288,7 +291,8 @@ var cats = [
         "title": "Time Breakdown"
       }
 
-    ],
+    ]
+  }, {
     "id": 5,
     "name": "Analyze Platform I/O Workload",
     "charts": [
