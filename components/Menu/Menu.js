@@ -19,18 +19,37 @@ if (typeof document !== 'undefined') {
 
 var Menu = React.createClass({
   getInitialState: function () {
-    return {activeMenu: ""};
+    return {items: cats};
   },
-  updateMenu: function () {
+  componentDidMount: function () {
+    // this.state.items.forEach(function (subcat) {
+    //   subcat.charts.forEach(function (item) {
+    //     item.color = "white";
+    //   });
+    // }).bind(this);
+  },
+  updateMenu: function (itemId) {
     console.log("updateMenu");
+    console.log(this.state.items);
+    var i,j;
+    for (i in this.state.items) {
+      for (j in this.state.items[i].charts) {
+        if (this.state.items[i].charts[j].id == itemId) {
+          this.state.items[i].charts[j].color = "#C5BFC7";
+          console.log("chage to red for " + this.state.items[i].charts[j].id);
+        } else {
+          this.state.items[i].charts[j].color = "white";
+        }
+      }
+    }
+    this.forceUpdate();
   },
   render: function () {
     var rowsgroup = [];
     // var items = categories.hello;
-    var items = cats;
     var this_ = this;
-    items.forEach(function (item) {
-      item.color = "white";
+    this.state.items.forEach(function (item) {
+      // console.log(item);
       rowsgroup.push(<MenuRowGroup item={item} updateMenu={this_.updateMenu}/>);
     });
     return (
@@ -77,6 +96,7 @@ var MenuRowGroup = React.createClass({
     var charts = this.props.item.charts;
     var this_ = this;
     charts.forEach(function (item) {
+      console.log(item);
       rows.push(<MenuRow item={item} updateMenu={this_.props.updateMenu}/>);
     });
     return (
@@ -181,12 +201,8 @@ var MenuRow = React.createClass({
 
 
   handleClick: function (e) {
-    console.log("Hello handleClick");
     if (typeof window !== 'undefined') {
-      console.log("before updatemenu");
-      this.props.updateMenu();
-      console.log("after udatemenu");
-
+      this.props.updateMenu(this.props.item.id);
       console.log("handle click");
       var chart_id = this.props.item.id;
       $("#chart").html("<div><center>Loading...</center></div>");
@@ -215,7 +231,7 @@ var MenuRow = React.createClass({
   },
   render: function () {
     return (
-      <li onClick={this.handleClick}>
+      <li style={{"backgroundColor":this.props.item.color}} onClick={this.handleClick}>
         <a>{this.props.item.title}</a>
       </li>
     );
