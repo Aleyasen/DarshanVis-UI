@@ -10,6 +10,7 @@ var Chart = require('../Charts/Chart');
 import * as utils from '../Utils';
 import ReactDOM from 'react-dom';
 import MenuCats  from '../../config/categories';
+import './Menu.scss';
 var $ = require("jquery");
 if (typeof document !== 'undefined') {
   require("jquery-ui");
