@@ -7,11 +7,10 @@
 import React, {PropTypes} from 'react';
 import config from '../../config';
 var Chart = require('../Charts/Chart');
-// require('../Utils')
 import * as utils from '../Utils';
 import ReactDOM from 'react-dom';
+import MenuCats  from '../../config/categories';
 var $ = require("jquery");
-// require("jquery-ui/autocomplete");
 if (typeof document !== 'undefined') {
   require("jquery-ui");
 }
@@ -19,37 +18,31 @@ if (typeof document !== 'undefined') {
 
 var Menu = React.createClass({
   getInitialState: function () {
-    return {items: cats};
+    return {items: MenuCats.cats};
   },
   componentDidMount: function () {
-    // this.state.items.forEach(function (subcat) {
-    //   subcat.charts.forEach(function (item) {
-    //     item.color = "white";
-    //   });
-    // }).bind(this);
-  },
+    this.state.items[0].charts[0].color = "#C5BFC7";
+    this.forceUpdate();
+  }
+  ,
   updateMenu: function (itemId) {
     console.log("updateMenu");
     console.log(this.state.items);
-    var i,j;
-    for (i in this.state.items) {
-      for (j in this.state.items[i].charts) {
-        if (this.state.items[i].charts[j].id == itemId) {
-          this.state.items[i].charts[j].color = "#C5BFC7";
-          // console.log("chage to red for " + this.state.items[i].charts[j].id);
+    this.state.items.forEach(function (subcat) {
+      subcat.charts.forEach(function (item) {
+        if (item.id == itemId) {
+          item.color = "#C5BFC7";
         } else {
-          this.state.items[i].charts[j].color = "white";
+          item.color = "white";
         }
-      }
-    }
+      });
+    })
     this.forceUpdate();
   },
   render: function () {
     var rowsgroup = [];
-    // var items = categories.hello;
     var this_ = this;
     this.state.items.forEach(function (item) {
-      // console.log(item);
       rowsgroup.push(<MenuRowGroup item={item} updateMenu={this_.updateMenu}/>);
     });
     return (
@@ -110,10 +103,6 @@ var MenuRowGroup = React.createClass({
 });
 
 var callback = function (data) {
-  console.log("entered callback");
-  // console.log(this.chart);
-  // console.log("DATA");
-  // console.log(data);
   var chart_id = this.chart;
 
   if (chart_id == "17") {
@@ -126,8 +115,6 @@ var callback = function (data) {
     $("#chart-config").hide();
     var opts = utils.charts[chart_id];
     var series = utils.chart_series[chart_id];
-    // console.log("SERIES:");
-    // console.log(series);
     var queryResult = data;
     var opts_series = [];
     for (var i = 0; i < series.length; i++) {
@@ -150,8 +137,6 @@ var callback = function (data) {
     console.log(opts_series);
 
     opts.series = opts_series;
-    // console.log("options");
-    // console.log(opts);
     var element = React.createElement(Chart, {container: 'chart', options: opts});
 
     if (typeof window !== 'undefined') {
@@ -236,94 +221,5 @@ var MenuRow = React.createClass({
   }
 });
 
-var cats_all = [
-  {
-    "id": 2,
-    "name": "Analyze Application I/O Behavior",
-    "charts": [
-      {
-        "id": 17,
-        "title": "Overview of I/O characteristics"
-      },
-      {
-        "id": 12,
-        "title": "Time Breakdown"
-      }
-
-    ]
-  },
-  {
-    "id": 1,
-    "name": "Analyze Platform I/O Workload",
-    "charts": [
-      {
-        "id": 8,
-        "title": "I/O Throughput of All Apps"
-      },
-      {
-        "id": 18,
-        "title": "Cumulative Usage of I/O Time of Apps"
-      },
-      {
-        "id": 999,
-        "title": "Top Apps",
-        "subcats": [
-          {
-            "id": 9,
-            "title": "with Highest I/O Time"
-          },
-          {
-            "id": 4,
-            "title": "with Highest Run Time"
-          },
-          {
-            "id": 10,
-            "title": "with Highest Amount of Data Accessed"
-          }
-        ]
-      },
-      {
-        "id": 15,
-        "title": "Application's Data Size Distribution"
-      }
-    ]
-  }
-];
-
-
-var cats = [
-  {
-    "id": 2,
-    "name": "Analyze Application I/O Behavior",
-    "charts": [
-      {
-        "id": 17,
-        "title": "Overview of I/O characteristics"
-      },
-      {
-        "id": 12,
-        "title": "Time Breakdown"
-      }
-
-    ]
-  }, {
-    "id": 5,
-    "name": "Analyze Platform I/O Workload",
-    "charts": [
-      {
-        "id": 10,
-        "title": "Top Applications with Highest Amount of Data Read/Written"
-      },
-      {
-        "id": 9,
-        "title": "Top Applications with Highest I/O Time",
-      },
-      {
-        "id": 4,
-        "title": "Top Applications with Highest Runtime",
-      },
-    ]
-  }
-];
 
 export default Menu;

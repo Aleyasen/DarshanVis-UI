@@ -15,7 +15,7 @@ import Navigation from '../Navigation';
 
 function MainContainer({params}) {
   return (
-    <div className="container-fluid" style={{"paddingTop":"80px"}}>
+    <div className="container-fluid" style={{"paddingTop":"40px"}}>
       <Navigation />
       <div className="row">
         <div className="col-sm-3 col-md-3">
