@@ -1,9 +1,3 @@
-/**
- * React Static Boilerplate
- * https://github.com/koistya/react-static-boilerplate
- * Copyright (c) Konstantin Tarkus (@koistya) | MIT license
- */
-
 import React, {PropTypes} from 'react';
 var Chart = require('../Chart');
 import * as utils from '../../Utils';
@@ -16,8 +10,8 @@ if (typeof document !== 'undefined') {
 
 var TopApps = React.createClass({
   componentDidMount: function () {
-    console.log("mounted top apps"); 
-    utils.setup_top_apps(this.props.data);   
+    console.log("mounted top apps");
+    utils.setup_top_apps(this.props.data);
   },
   render: function () {
     // var rowsgroup = [];

@@ -1,8 +1,10 @@
 import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, Link, hashHistory} from 'react-router';
+import {Router, Route, Link, hashHistory, browserHistory} from 'react-router';
 import './Login.scss';
-import MainContainer from '../MainContainer'
+import MainContainer from '../MainContainer';
+import {render} from 'react-dom';
+// import rr from '../../route/Route';
 
 
 var Login = React.createClass({
@@ -15,6 +17,7 @@ var Login = React.createClass({
 
   handleLogin: function (e) {
     e.preventDefault();
+    // browserHistory.push('/app');
     ReactDOM.render(<MainContainer />, document.getElementById("app"));
   },
 

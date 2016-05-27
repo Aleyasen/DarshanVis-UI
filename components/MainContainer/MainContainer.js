@@ -1,15 +1,13 @@
-/**
- * React Static Boilerplate
- * https://github.com/koistya/react-static-boilerplate
- * Copyright (c) Konstantin Tarkus (@koistya) | MIT license
- */
-
 import React, {PropTypes} from 'react';
+import {render} from 'react-dom'
 
 import Menu from '../Menu';
 import ChartPage from '../Charts/SimpleChart';
 import Sorting from '../Sorting';
 import Navigation from '../Navigation';
+
+import {Router, Route, Link, hashHistory, browserHistory} from 'react-router';
+import Login from '../Login';
 // import ChartPage from '../Charts/ChartTimeBreakDown';
 
 
@@ -100,3 +98,4 @@ MainContainer.propTypes = {
 };
 
 export default MainContainer;
+

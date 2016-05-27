@@ -23,8 +23,9 @@ var Menu = React.createClass({
     return {items: MenuCats.cats};
   },
   componentDidMount: function () {
-    this.state.items[0].charts[0].color = "#C5BFC7";
+    this.state.items[1].charts[0].color = "#C5BFC7";
     this.forceUpdate();
+    showChart(10);
   }
   ,
   updateMenu: function (itemId) {
@@ -114,7 +115,7 @@ var callback = function (data) {
   else if (chart_id == "10" || chart_id == "9" || chart_id == "4") {
     console.log("setting up top");
     // utils.setup_top_chart(data);
-    var element = React.createElement(TopApps, {c_id : chart_id, data : data});
+    var element = React.createElement(TopApps, {c_id: chart_id, data: data});
     if (typeof window !== 'undefined') {
       ReactDOM.render(element, document.getElementById('chart'));
     }
@@ -191,33 +192,8 @@ var callback = function (data) {
 
 var MenuRow = React.createClass({
   handleClick: function (e) {
-    if (typeof window !== 'undefined') {
-      this.props.updateMenu(this.props.item.id);
-      console.log("handle click");
-      var chart_id = this.props.item.id;
-      $("#chart").html("<div><center>Loading...</center></div>");
-      $("#chart_id_storage").val(chart_id);
-      var data = {
-        url: "test",
-        chart: chart_id
-      }
-
-      $.ajax({
-        url: config.server_url + '/index.php/jobs/filter',
-        // url: "http://localhost/index.php/jobs/filter",
-        dataType: 'json',
-        type: 'POST',
-        data: JSON.stringify(data),
-        chart: chart_id,
-        success: callback,
-        error: function (xhr, status, err) {
-          console.log("ERROR");
-          console.log(xhr);
-          console.log(status);
-          console.log(err);
-        }
-      });
-    }
+    var chart_id = this.props.item.id;
+    showChart(chart_id, this);
   },
   render: function () {
     return (
@@ -229,4 +205,35 @@ var MenuRow = React.createClass({
 });
 
 
+function showChart(chart_id, _this) {
+  if (typeof window !== 'undefined') {
+    if (typeof _this !== 'undefined') {
+      _this.props.updateMenu(_this.props.item.id);
+    }
+    console.log("handle click");
+
+    $("#chart").html("<div><center>Loading...</center></div>");
+    $("#chart_id_storage").val(chart_id);
+    var data = {
+      url: "test",
+      chart: chart_id
+    }
+
+    $.ajax({
+      url: config.server_url + '/index.php/jobs/filter',
+      // url: "http://localhost/index.php/jobs/filter",
+      dataType: 'json',
+      type: 'POST',
+      data: JSON.stringify(data),
+      chart: chart_id,
+      success: callback,
+      error: function (xhr, status, err) {
+        console.log("ERROR");
+        console.log(xhr);
+        console.log(status);
+        console.log(err);
+      }
+    });
+  }
+}
 export default Menu;

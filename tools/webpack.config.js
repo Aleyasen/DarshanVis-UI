@@ -30,6 +30,7 @@ const JS_LOADER = {
     path.resolve(__dirname, '../app.js'),
     path.resolve(__dirname, '../config.js'),
     path.resolve(__dirname, '../config'),
+    path.resolve(__dirname, '../route'),
   ],
   loader: 'babel-loader',
   query: {compact: false}
