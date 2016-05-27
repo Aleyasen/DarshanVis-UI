@@ -31,21 +31,21 @@ var TopApps = React.createClass({
               <button id="min_max_button" class="btn btn-large btn-primary">Constant Min/Max Toggle</button>
           </div>
           <div class="row">
-              <div id="chart-container-1" class="col-md-4 charts" style={{"height":"400px", "margin":"0px"}}></div>
-              <div id="chart-container-2" class="col-md-4 charts"  style={{"height":"400px", "margin":"0px"}}></div>
-              <div id="chart-container-3" class="col-md-4 charts"  style={{"height":"400px", "margin":"0px"}}></div>
-              <div id="chart-container-4" class="col-md-4 charts"  style={{"height":"400px", "margin":"0px"}}></div>
-              <div id="chart-container-5" class="col-md-4 charts"  style={{"height":"400px", "margin":"0px"}}></div>
-              <div id="chart-container-6" class="col-md-4 charts"  style={{"height":"400px", "margin":"0px"}}></div>
-              <div id="chart-container-7" class="col-md-4 charts"  style={{"height":"400px", "margin":"0px"}}></div>
-              <div id="chart-container-8" class="col-md-4 charts"  style={{"height":"400px", "margin":"0px"}}></div>
-              <div id="chart-container-9" class="col-md-4 charts"  style={{"height":"400px", "margin":"0px"}}></div>
-              <div id="chart-container-10" class="col-md-4 charts"  style={{"height":"400px", "margin":"0px"}}></div>
-              <div id="chart-container-11" class="col-md-4 charts"  style={{"height":"400px", "margin":"0px"}}></div>
-              <div id="chart-container-12" class="col-md-4 charts"  style={{"height":"400px", "margin":"0px"}}></div>
-              <div id="chart-container-13" class="col-md-4 charts"  style={{"height":"400px", "margin":"0px"}}></div>
-              <div id="chart-container-14" class="col-md-4 charts"  style={{"height":"400px", "margin":"0px"}}></div>
-              <div id="chart-container-15" class="col-md-4 charts"  style={{"height":"400px", "margin":"0px"}}></div>
+              <div id="chart-container-1" class="col-md-4 charts" className="col-md-4" style={{"height":"400px", "margin":"0px"}}></div>
+              <div id="chart-container-2" class="col-md-4 charts" className="col-md-4"   style={{"height":"400px", "margin":"0px"}}></div>
+              <div id="chart-container-3" class="col-md-4 charts" className="col-md-4"   style={{"height":"400px", "margin":"0px"}}></div>
+              <div id="chart-container-4" class="col-md-4 charts" className="col-md-4"   style={{"height":"400px", "margin":"0px"}}></div>
+              <div id="chart-container-5" class="col-md-4 charts" className="col-md-4"   style={{"height":"400px", "margin":"0px"}}></div>
+              <div id="chart-container-6" class="col-md-4 charts" className="col-md-4"   style={{"height":"400px", "margin":"0px"}}></div>
+              <div id="chart-container-7" class="col-md-4 charts" className="col-md-4"   style={{"height":"400px", "margin":"0px"}}></div>
+              <div id="chart-container-8" class="col-md-4 charts" className="col-md-4"   style={{"height":"400px", "margin":"0px"}}></div>
+              <div id="chart-container-9" class="col-md-4 charts" className="col-md-4"   style={{"height":"400px", "margin":"0px"}}></div>
+              <div id="chart-container-10" class="col-md-4 charts" className="col-md-4"   style={{"height":"400px", "margin":"0px"}}></div>
+              <div id="chart-container-11" class="col-md-4 charts" className="col-md-4"   style={{"height":"400px", "margin":"0px"}}></div>
+              <div id="chart-container-12" class="col-md-4 charts" className="col-md-4"   style={{"height":"400px", "margin":"0px"}}></div>
+              <div id="chart-container-13" class="col-md-4 charts" className="col-md-4"   style={{"height":"400px", "margin":"0px"}}></div>
+              <div id="chart-container-14" class="col-md-4 charts" className="col-md-4"   style={{"height":"400px", "margin":"0px"}}></div>
+              <div id="chart-container-15" class="col-md-4 charts" className="col-md-4"   style={{"height":"400px", "margin":"0px"}}></div>
           </div>
       </div>
     );
