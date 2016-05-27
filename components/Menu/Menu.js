@@ -7,6 +7,7 @@
 import React, {PropTypes} from 'react';
 import config from '../../config';
 var Chart = require('../Charts/Chart');
+var TopApps = require('../Charts/TopApps');
 import * as utils from '../Utils';
 import ReactDOM from 'react-dom';
 import MenuCats  from '../../config/categories';
@@ -90,7 +91,7 @@ var MenuRowGroup = React.createClass({
     var charts = this.props.item.charts;
     var this_ = this;
     charts.forEach(function (item) {
-      console.log(item);
+      // console.log(item);
       rows.push(<MenuRow item={item} updateMenu={this_.props.updateMenu}/>);
     });
     return (
@@ -105,14 +106,21 @@ var MenuRowGroup = React.createClass({
 
 var callback = function (data) {
   var chart_id = this.chart;
-
+  console.log(chart_id);
   if (chart_id == "17") {
+    console.log("setting up special chart");
     utils.setup_chart_special(data);
   }
   else if (chart_id == "10" || chart_id == "9" || chart_id == "4") {
-    utils.setup_top_chart(data);
+    console.log("setting up top");
+    // utils.setup_top_chart(data);
+    var element = React.createElement(TopApps, {c_id : chart_id, data : data});
+    if (typeof window !== 'undefined') {
+      ReactDOM.render(element, document.getElementById('chart'));
+    }
   }
   else {
+    console.log("setting up normal");
     $("#chart-config").hide();
     var opts = utils.charts[chart_id];
     var series = utils.chart_series[chart_id];
@@ -135,7 +143,7 @@ var callback = function (data) {
       }
     }
     // console.log("OPTS SERIES");
-    console.log(opts_series);
+    // console.log(opts_series);
 
     opts.series = opts_series;
     var element = React.createElement(Chart, {container: 'chart', options: opts});
@@ -178,9 +186,7 @@ var callback = function (data) {
             });
           });
       });
-
   }
-
 };
 
 var MenuRow = React.createClass({
