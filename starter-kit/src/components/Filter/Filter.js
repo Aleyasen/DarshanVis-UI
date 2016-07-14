@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
-import config from '../../config';
-var Chart = require('../Charts/Chart');
+import {server_url} from '../../config';
+var Chart = require('../HChart');
 import * as utils from '../Utils';
 import ReactDOM from 'react-dom';
 import moment from "moment";
@@ -58,13 +58,13 @@ var callback = function (data) {
     }
   }
   if (typeof window != 'undefined') {
-    $.get(config.server_url + '/index.php/jobs/UserList', {
+    $.get(server_url + '/index.php/jobs/UserList', {
         user: "",
         application: "null"
       },
       function (data) {
         var users = data;
-        $.get(config.server_url + '/index.php/jobs/ApplicationList', {
+        $.get(server_url + '/index.php/jobs/ApplicationList', {
             application: "",
             user: "null"
           },
@@ -262,7 +262,7 @@ function updateChart(e) {
   console.log(data);
   if (typeof window !== 'undefined') {
     $.ajax({
-      url: config.server_url + '/index.php/jobs/filter',
+      url: server_url + '/index.php/jobs/filter',
       // url: "http://localhost/index.php/jobs/filter",
       dataType: 'json',
       type: 'POST',

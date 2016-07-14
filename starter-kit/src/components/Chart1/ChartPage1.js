@@ -6,19 +6,17 @@
 
 import React, {PropTypes} from 'react';
 import Filter from '../Filter';
-import Chart from '../Charts/SimpleChart';
-import Table from '../Table';
 
 function ChartPage1({params}) {
   return (
     <div>
-      <Filter data="params"/>
+      <Filter/>
       <div id="chart-container"/>
     </div>
   );
 }
 
-ChartPage.propTypes = {
+ChartPage1.propTypes = {
   // children: PropTypes.element.isRequired,
 };
 

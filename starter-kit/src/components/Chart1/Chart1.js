@@ -1,11 +1,11 @@
 import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
-import config from '../../../config';
+import {server_url} from '../../config';
 
 var $ = require('jquery');
 var Highcharts = require('highcharts');
 
-var Chart = require('../Chart');
+var Chart = require('../HChart');
 
 var default_opts = {
   title: {
@@ -82,7 +82,7 @@ var data = {
 }
 if (typeof window !== 'undefined') {
   $.ajax({
-    url: config.server_url + '/index.php/jobs/filter',
+    url: server_url + '/index.php/jobs/filter',
     // url: "http://localhost/index.php/jobs/filter",
     dataType: 'json',
     type: 'POST',

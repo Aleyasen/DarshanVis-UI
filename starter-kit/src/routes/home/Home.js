@@ -11,6 +11,7 @@ import React, {PropTypes} from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Home.css';
 import Menu from '../../components/Menu';
+import Chart1 from '../../components/Chart1';
 
 const title = 'React Starter Kit';
 
@@ -25,10 +26,10 @@ function Home({news}, context) {
             <Menu/>
           </div>
           <div className="col-md-9">
+
             <div className="tab-content">
               <div id="chart1" className="tab-pane fade in active">
-                <h3>HOME</h3>
-                <p>Some content.</p>
+                <Chart1/>
               </div>
               <div id="chart2" className="tab-pane fade">
                 <h3>Menu 1</h3>
@@ -39,6 +40,7 @@ function Home({news}, context) {
                 <p>Some content in menu 2.</p>
               </div>
             </div>
+            <div id="chart"/>
           </div>
 
         </div>
