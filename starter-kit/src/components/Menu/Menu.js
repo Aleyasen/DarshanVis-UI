@@ -11,9 +11,14 @@ import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Menu.css';
 import {server_url} from '../../config';
+import * as utils from '../Utils';
 import ReactDOM from 'react-dom';
 var Chart = require('../HChart');
 import TopApps  from '../TopApps';
+if (typeof document !== 'undefined') {
+  var $ = require('jquery');
+  require("jquery-ui");
+}
 
 
 var Menu = React.createClass({
@@ -21,12 +26,13 @@ var Menu = React.createClass({
   // },
   componentDidMount: function () {
     // this.forceUpdate();
-    showChart(10);
+    // showChart(10);
   }
   ,
   updateMenu: function (itemId) {
   },
   handleClick: function (e) {
+
     console.log("handleClick event data:::")
     console.log(e);
     var chart_id = this.props.chartID;
@@ -38,35 +44,43 @@ var Menu = React.createClass({
         <li role="presentation">
           <b>Analyze Application I/O Behavior</b>
         </li>
-        <li role="presentation" className="active" onclick={this.handleClick}>
+        <li role="presentation" className="menuitem active">
           <a href="#chart1"
-             data-toggle="pill" chartID="17">Overview of I/O characteristics</a>
+             data-toggle="pill" data-chartid="17">Overview of I/O characteristics</a>
         </li>
-        <li role="presentation" onclick={this.handleClick}>
+        <li role="presentation" className="menuitem">
           <a href="#chart2"
-             data-toggle="pill" chartID="12">Time Breakdown</a>
+             data-toggle="pill" data-chartid="12">Time Breakdown</a>
         </li>
-        <li role="presentation" onclick={this.handleClick}>
+        <li role="presentation" className="menuitem">
           <b>Analyze Platform I/O Workload</b>
         </li>
-        <li role="presentation" onclick={this.handleClick}>
+        <li role="presentation" className="menuitem">
           <a href="#chart3"
-             data-toggle="pill" chartID="10">Top Applications with Highest Amount of Data Read/Written</a>
+             data-toggle="pill" data-chartid="10">Top Applications with Highest Amount of Data Read/Written</a>
         </li>
-        <li role="presentation" onclick={this.handleClick}>
+        <li role="presentation" className="menuitem">
           <a href="#chart4"
-             data-toggle="pill" chartID="9">Top Applications with Highest I/O Time</a>
+             data-toggle="pill" data-chartid="9">Top Applications with Highest I/O Time</a>
         </li>
-        <li role="presentation">
+        <li role="presentation" className="menuitem">
           <a href="#chart5"
-             data-toggle="pill" chartID="4">Top Applications with Highest Runtime</a>
+             data-toggle="pill" data-chartid="4">Top Applications with Highest Runtime</a>
         </li>
       </ul>
     );
   }
 });
 
-function showChart(chart_id, _this) {
+if (typeof document !== 'undefined') {
+  $('.menuitem').click(function () {
+    // e.preventDefault()
+    var chart_id = $(this).children("a").data("chartid");
+    showChart(chart_id);
+  })
+}
+
+function showChart(chart_id) {
   console.log("handle click");
 
   $("#chart").html("<div><center>Loading...</center></div>");
@@ -157,23 +171,23 @@ var callback = function (data) {
             var apps = data;
             // $("#user-typeahead").typeahead({source:users});
             // $("#application-typeahead").typeahead({source: apps});
-
-            $("#user-typeahead").autocomplete({
-              source: users,
-              messages: {
-                noResults: '',
-                results: function () {
-                }
-              }
-            });
-            $("#application-typeahead").autocomplete({
-              source: apps,
-              messages: {
-                noResults: '',
-                results: function () {
-                }
-              }
-            });
+            // TODO: uncomment autocompletes
+            // $("#user-typeahead").autocomplete({
+            //   source: users,
+            //   messages: {
+            //     noResults: '',
+            //     results: function () {
+            //     }
+            //   }
+            // });
+            // $("#application-typeahead").autocomplete({
+            //   source: apps,
+            //   messages: {
+            //     noResults: '',
+            //     results: function () {
+            //     }
+            //   }
+            // });
           });
       });
   }

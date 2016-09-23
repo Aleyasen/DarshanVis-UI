@@ -32,8 +32,7 @@ function Home({news}, context) {
                 <Chart1/>
               </div>
               <div id="chart2" className="tab-pane fade">
-                <h3>Menu 1</h3>
-                <p>Some content in menu 1.</p>
+                
               </div>
               <div id="chart3" className="tab-pane fade">
                 <h3>Menu 2</h3>

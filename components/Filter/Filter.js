@@ -107,8 +107,9 @@ function Filter({children}) {
   var numapp_placeholder = "Apps#";
   var user_placeholder = "All users";
   var app_placeholder = "All apps"
-  var start_date = moment().subtract(5, 'years');
-  var end_date = moment();
+  var start_date = moment().subtract(3, 'years').subtract('5', 'days');
+  var date_mode = "custom";
+  var end_date = moment().subtract(2, 'years').subtract('21', 'days');
   var end_date_min = start_date;
   console.log("in the sorting >>>>>>>>>>>>>");
   var chart = utils.charts["12"];
@@ -127,7 +128,7 @@ function Filter({children}) {
       <div className="row">
 
 
-        <div className="form-group col-md-4">
+        <div className="form-group col-md-3">
           <div className="input-group">
                 <span className="input-group-addon">
                     <i className="glyphicon glyphicon-user" data-toggle="tooltip" data-placement="left"
@@ -139,7 +140,7 @@ function Filter({children}) {
           </div>
         </div>
 
-        <div className="form-group col-md-4">
+        <div className="form-group col-md-3">
           <div className="input-group">
                 <span className="input-group-addon">
                     <i className="glyphicon glyphicon-font" data-toggle="tooltip" data-placement="left"
@@ -151,15 +152,25 @@ function Filter({children}) {
           </div>
         </div>
 
+        <div className="col-md-3">
+          <select className="form-control" id="dateselector" selected={date_mode} onChange={dateModeChanged}>
+            <option value="today">Today</option>
+            <option value="yesterday">Yesterday</option>
+            <option value="lastweek">Last week</option>
+            <option value="lastmonth">Last month</option>
+            <option value="custom" selected>Specify range...</option>
+          </select>
+        </div>
+
       </div>
       <div className="row">
-        <div className="form-group col-md-4">
+        <div className="form-group col-md-3 daterangeselector">
           <DateTimeField
             dateTime={start_date}
             onChange={startDateChanged}
           />
         </div>
-        <div className="form-group col-md-4">
+        <div className="form-group col-md-3 daterangeselector">
           <DateTimeField
             dateTime={end_date}
             minDate={end_date_min}
@@ -195,10 +206,32 @@ function Filter({children}) {
   );
 }
 
+// $('#dateselector').on('change', function() {
+//   alert( this.value ); // or $(this).val()
+// });
+// function changedatemode(){
+//
+// }
+
 function startDateChanged(e) {
-  end_date_min = e;
+  // end_date_min = e;
   console.log(e);
   $("#start_date_storage").val(e);
+}
+
+function dateModeChanged(e) {
+  var selected = e.target.value;
+  if (selected == "custom") {
+    console.log("hid dates");
+    $(".daterangeselector").show();
+  } else {
+    console.log("show dates");
+    now = moment();
+    last_week = moment().subtract(7, "days");
+    $("#start_date_storage").val(last_week);
+    $("#end_date_storage").val(now);
+    $(".daterangeselector").hide();
+  }
 }
 
 function endDateChanged(e) {
