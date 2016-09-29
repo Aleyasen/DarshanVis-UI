@@ -1,0 +1,35 @@
+{
+    "id": 1,
+    "name": "generic-chart",
+    "template": "charts/bar.scatter.js.php",
+    "filter": "components/_filters.php",
+    "preprocess": "generic",
+    "highchart-confs": {
+        "chart": {
+            "zoomType": "xy",
+            "width": 900,
+            "height": 500
+        },
+        "title": {
+            "text": "Default Chart",
+            "margin": -5
+        },
+        "subtitle": {
+            "text": ""
+        },
+        "exporting": {
+            "buttons": {
+                "contextButton": {
+                    "symbol": "url(../../img/printer2.png)"
+                    }
+            }
+        },
+        "navigation": {
+            "buttonOptions": {
+                "verticalAlign": "bottom",
+                "y": -10
+            }
+        }
+
+    }
+}
