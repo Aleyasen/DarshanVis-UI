@@ -32,7 +32,7 @@ function Home({news}, context) {
                 <Chart1/>
               </div>
               <div id="chart2" className="tab-pane fade">
-                
+
               </div>
               <div id="chart3" className="tab-pane fade">
                 <h3>Menu 2</h3>
@@ -40,6 +40,7 @@ function Home({news}, context) {
               </div>
             </div>
             <div id="chart"/>
+            
           </div>
 
         </div>
