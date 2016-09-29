@@ -1,0 +1,51 @@
+{
+    "_comment": "Change to new database, don't have ID column anymore, unique_iotime become local_iotime, etc... ",
+    "id": 17,
+    "title": "",
+    "type": "scatter",
+    "template": "charts/scatter.js.php",
+    "filter": "components/_filters.php",
+    "preprocess": "generic",
+    "subtitle": "",
+    "xAxis": {
+        "title": "Jobs",
+        "attribute": "total_bytes",
+        "type": "linear",
+        "options": [
+            "start_time",
+            "total_bytes",
+            "nprocs",
+            "thruput",
+            "uid"
+        ]
+    },
+    "yAxis": {
+        "title": "Throughput",
+        "type": "linear",
+        "options": [
+            "start_time",
+            "total_bytes",
+            "nprocs",
+            "thruput",
+            "uid"
+        ]
+    },
+    "tooltip": {
+        "valueSuffix": ""
+    },
+    "highchart-confs": {
+        "title": {
+            "text": "Scatter plot of application's I/O characteristics"
+        },
+        "subtitle": {
+            "text": ""
+        }
+    },
+    "query": {
+        "select": "uid, appname, start_time, total_bytes, nprocs, agg_perf_MB*1024*1024 as thruput",
+        "from": "jobs_info",
+        "where": "total_bytes>0 and nprocs>0 and agg_perf_MB>0 and total_bytes is not null and nprocs is not null and agg_perf_MB is not null"
+    },
+    "series": [
+    ]
+}
