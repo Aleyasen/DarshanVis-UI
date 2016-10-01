@@ -1,0 +1,56 @@
+<template name="home">
+  <div class="template-home">
+    <!--<div class="page-header">-->
+    <!--<h1>Welcome to Project Title</h1>-->
+    <!--</div>-->
+    <div class="rows">
+      <div class="col-lg-3">
+        <ul class="nav nav-pills nav-stacked" role="tablist">
+          <li role="presentation">
+            <b>Analyze Application I/O Behavior</b>
+          </li>
+          <li role="presentation" class="menuitem active">
+            <a href="#chart1"
+               data-toggle="pill" data-chartid="17">Overview of I/O characteristics</a>
+          </li>
+          <li role="presentation" class="menuitem">
+            <a href="#chart2"
+               data-toggle="pill" data-chartid="12">Time Breakdown</a>
+          </li>
+          <li role="presentation" class="menuitem">
+            <b>Analyze Platform I/O Workload</b>
+          </li>
+          <li role="presentation" class="menuitem">
+            <a href="#chart3"
+               data-toggle="pill" data-chartid="10">Top Applications with Highest Amount of Data Read/Written</a>
+          </li>
+          <li role="presentation" class="menuitem">
+            <a href="#chart4"
+               data-toggle="pill" data-chartid="9">Top Applications with Highest I/O Time</a>
+          </li>
+          <li role="presentation" class="menuitem">
+            <a href="#chart5"
+               data-toggle="pill" data-chartid="4">Top Applications with Highest Runtime</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-9">
+
+        <div class="tab-content">
+          <div id="chart1" class="tab-pane fade in active">
+            {{>chart1}}
+          </div>
+          <div id="chart2" class="tab-pane fade">
+            chart2
+          </div>
+          <div id="chart3" class="tab-pane fade">
+            <h3>Menu 2</h3>
+            <p>Some content in menu 2.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</template>
