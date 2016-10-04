@@ -52,7 +52,7 @@
   "dependencies": {
     "bcrypt": "^0.8.7",
     "bootstrap": "^3.3.6",
-    "highcharts": "^4.2.4",
+    "highcharts": "^4.2.7",
     "jquery": "^2.2.3",
     "jquery-typeahead": "^2.6.1",
     "jquery-ui": "^1.10.5",
