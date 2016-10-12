@@ -1,0 +1,5 @@
+{
+  "private": true,
+  "name": "Cookies",
+  "main": "./cookies.js"
+}

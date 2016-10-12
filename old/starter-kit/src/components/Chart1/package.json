@@ -1,0 +1,5 @@
+{
+  "private": true,
+  "name": "ChartPage1",
+  "main": "./ChartPage1.js"
+}
