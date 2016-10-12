@@ -1,0 +1,50 @@
+<template name="usertexbox">
+    <div class="form-group">
+        <div class="input-group">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-user"></span>
+                </span>
+            <input type="text" name="user" class="form-control cust_autocomplete user-typeahead"
+                   data-provide="typeahead" data_vis={{data_vis}}
+                           placeholder="hello" autocomplete="off"/>
+        </div>
+    </div>
+</template>
+
+<template name="apptextbox">
+    <div class="form-group">
+        <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-font" data-toggle="tooltip" data-placement="left"
+                       title="My Tooltip text"></i>
+                </span>
+            <input type="text" name="application" class="form-control cust_autocomplete application-typeahead" data_vis={{data_vis}}
+                   data-provide="typeahead" placeholder={app_placeholder} autocomplete="off"/>
+
+        </div>
+    </div>
+</template>
+
+<template name="datetypeselector">
+    <div>
+        <select class="form-control" data_vis={{data_vis}}>
+            <option value="today">Today</option>
+            <option value="yesterday">Yesterday</option>
+            <option value="lastweek">Last week</option>
+            <option value="lastmonth">Last month</option>
+            <option value="custom" selected>Specify range...</option>
+        </select>
+    </div>
+</template>
+
+<template name="sortbutton">
+    <div class="form-group">
+        <button type="button" data_vis={{data_vis}} class="btn tiny-button
+        "
+        data-toggle="modal"
+        href="#sorting_modal">
+        <i class="glyphicon glyphicon-sort-by-alphabet"></i>
+        Sort
+        </button>
+    </div>
+</template>
