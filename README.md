@@ -1,61 +1,46 @@
-# DarshanVis-UI
+# DarshanVis
 
+Darshan (A Scalable HPC I/O Characterization Tool) Data Visualization Tool
 
-### Getting Started
+## Installation
 
-Just clone the repo, install Node.js modules and run `npm start`:
-
-```
-$ git clone https://github.com/Aleyasen/DarshanVis-UI.git
-$ cd DarshanVis-UI
-$ npm install
-$ npm start
+```bash
+bash demo.sh
 ```
 
-Then open [http://localhost:3000/](http://localhost:3000/) in your browser.
+You will be prompted to set up an admin user.
 
-### How to Test
+When finished navigate to [http://localhost:8088/](http://localhost:8088/) to see the UI.
 
-The unit tests are powered by [chai](http://chaijs.com/) and [mocha](http://mochajs.org/).
+Log in with the credentials you just created.
 
+Here is a more detailed explanation of what the demo script is doing:
+
+```bash
+cd mysql
+
+# Start Redis & MySQL services
+docker-compose up -d redis mysql
+# Wait for services to come up fully...
+
+# Start Superset
+docker-compose up -d superset
+# Wait for Superset to come up fully...
+
+# Initialize Superset DB
+docker-compose exec superset superset-demo
+# or `docker-compose exec superset superset-init` if no demo data needed
+
+# Play around in demo...
+
+# Bring everything down
+docker-compose down -v
 ```
-$ npm test
-```
 
-### How to Deploy
+## Getting Started
 
-```shell
-$ npm run deploy                # Deploys the project to GitHub Pages
-```
+- Import the `dashboards.pickle` by using `Manage -> Import Dashboard`. 
+- Modify the database SQLAlchemy URI at `Sources -> Databases -> Edit Record`
 
-Alternatively, you can build a production release to manually deploy to S3, Firebase, Netlify, and other static hosts. Simply run the command below and copy the generated `build` folder to your static host.
 
-```shell
-$ npm run build release         # Build production release 
-```
 
-### How to Update
-
-You can always fetch and merge the recent changes from this repo back into
-your own project:
-
-```shell
-$ git checkout master
-$ git fetch darshanvis-ui
-$ git merge darshanvis-ui/master
-$ npm install
-```
-### Related Projects
-
-  * [DarshanVis-API](https://github.com/Aleyasen/DarshanVis-API)
-  * [DarshanVis - old version](https://github.com/huongluu/DarshanVis)
-
-### Learn More
-
-  * [Getting Started with React.js](http://facebook.github.io/react/)
-  * [Getting Started with GraphQL and Relay](https://quip.com/oLxzA1gTsJsE)
-  * [Getting Started with Highcharts](http://www.highcharts.com/docs/getting-started/your-first-chart)
-  * [Learn ES6](https://babeljs.io/docs/learn-es6/), [ES6 Features](https://github.com/lukehoban/es6features#readme)
-
----
-Made with ♥ by [contributors](https://github.com/Aleyasen/DarshanVis-UI/graphs/contributors) &nbsp;|&nbsp; MIT License
