@@ -5,8 +5,8 @@ set -e
 cd mysql
 
 # Start back end
-  echo "Starting redis & $1 services..."
-  docker-compose up -d redis $1
+  echo "Starting redis & mysql services..."
+  docker-compose up -d redis mysql
   echo "Sleeping for 10s"
   sleep 10
 
@@ -20,6 +20,6 @@ sleep 10
 docker-compose exec superset superset-demo
 
 echo "Navigate to http://localhost:8088 to view demo"
-echo -n "Press RETURN to bring down demo"
-read down
-docker-compose down -v
+# echo -n "Press RETURN to bring down demo"
+# read down
+# docker-compose down -v

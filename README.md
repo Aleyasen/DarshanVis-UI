@@ -2,10 +2,23 @@
 
 Darshan (A Scalable HPC I/O Characterization Tool) Data Visualization Tool
 
+## Requirements
+
+- Docker Engine 1.13.0+
+- Docker Compose 1.15.0+
+
 ## Installation
 
+Clone the current branch:
 ```bash
-bash demo.sh
+git clone -b 2017 https://github.com/Aleyasen/DarshanVis-UI DarshanVis
+```
+
+Run the `run.sh` file
+
+```bash
+cd DarshanVis
+bash run.sh
 ```
 
 You will be prompted to set up an admin user.
@@ -32,15 +45,18 @@ docker-compose exec superset superset-demo
 # or `docker-compose exec superset superset-init` if no demo data needed
 
 # Play around in demo...
+```
 
-# Bring everything down
+To bring everything down and remove the volumes:
+```bash
 docker-compose down -v
 ```
 
+
 ## Getting Started
 
+- Add the database credential at `Sources -> Databases -> Add Record`
 - Import the `dashboards.pickle` by using `Manage -> Import Dashboard`. 
-- Modify the database SQLAlchemy URI at `Sources -> Databases -> Edit Record`
 
 
 
