@@ -27,7 +27,7 @@ When finished navigate to [http://localhost:8088/](http://localhost:8088/) to se
 
 Log in with the credentials you just created.
 
-Here is a more detailed explanation of what the demo script is doing:
+Here is a more detailed explanation of what the script is doing:
 
 ```bash
 cd mysql
